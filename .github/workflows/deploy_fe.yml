@@ -3,7 +3,8 @@ name: Deploy App
 on:
   push:
     paths:
-      - "web/*"
+      - "web/**"
+      - ".github/**"
 
 jobs:
   zip-files:
