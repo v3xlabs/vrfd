@@ -18,6 +18,7 @@
     "paths": {
         "@components/*": ["src/components/*"],
         "@assets/*": ["src/assets/*"],
+        "@utils/*": ["src/utils/*"],
     }
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.d.ts", "**/*.svg"],
