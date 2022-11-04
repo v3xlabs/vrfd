@@ -1,7 +1,5 @@
 import { FC } from 'react';
 
 export const OpenSourceSection: FC = () => {
-    return (
-
-    )
-}
+    return <div>please build</div>;
+};
