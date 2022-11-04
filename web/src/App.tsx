@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
+import { NotFoundPage } from './pages/404';
 import { HomePage } from './pages/home';
 
 const Root: FC = () => {
@@ -22,6 +23,11 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <HomePage />,
+                // loader: teamLoader,
+            },
+            {
+                path: '*',
+                element: <NotFoundPage />,
                 // loader: teamLoader,
             },
         ],
