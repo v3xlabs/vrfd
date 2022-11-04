@@ -1,0 +1,15 @@
+import { FC, ReactNode } from 'react';
+
+const Container: FC<{
+    children: ReactNode,
+}> = (properties) => {
+    return (
+        <div className="w-full px-4 pt-12 pb-32">
+            <div className="max-w-xl mx-auto text-center flex flex-col items-center gap-4">
+                {properties.children}
+            </div>
+        </div>
+    );
+};
+
+export default Container;

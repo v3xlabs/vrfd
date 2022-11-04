@@ -1,22 +1,22 @@
 import { Button } from '@ensdomains/thorin';
 import { FC } from 'react';
 
+import Container from '../../Container';
+
 export const AboutSection: FC = () => {
     return (
-        <div className="w-full px-4">
-            <div className="max-w-xl mx-auto text-center flex flex-col gap-4">
-                <div className="text-4xl font-bold text-transparent bg-clip-text bg-ens-gradient-primary">
-                    About
-                </div>
-                <div>
-                    Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
-                    Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
-                    Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
-                </div>
-                <div>
-                    <Button variant="primary">Test Button</Button>
-                </div>
+        <Container>
+            <div className="text-4xl font-bold text-transparent bg-clip-text bg-ens-gradient-primary">
+                About
             </div>
-        </div>
+            <div className="max-w-lg">
+                Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem
+                ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum
+                dolor sit amet. Lorem ipsum dolor sit amet.
+            </div>
+            <div className="w-48">
+                <Button variant="primary">Get involved</Button>
+            </div>
+        </Container>
     );
 };
