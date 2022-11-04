@@ -7,11 +7,11 @@ specifiers:
   '@types/styled-components': ^5.1.26
   '@vitejs/plugin-react': ^2.2.0
   autoprefixer: ^10.4.13
-  eslint: ^8.26.0
+  eslint: ^8.16.0
   eslint-plugin-jsx-a11y: ^6.6.1
+  eslint-plugin-lvksh: 1.4.1
   eslint-plugin-node: ^11.1.0
-  eslint-plugin-react: ^7.31.10
-  eslint-plugin-v3xlabs: ^1.5.2
+  eslint-plugin-react: ^7.30.0
   postcss: ^8.4.18
   prettier: ^2.7.1
   react: ^18.2.0
@@ -39,9 +39,9 @@ devDependencies:
   autoprefixer: 10.4.13_postcss@8.4.18
   eslint: 8.26.0
   eslint-plugin-jsx-a11y: 6.6.1_eslint@8.26.0
+  eslint-plugin-lvksh: 1.4.1_wyqvi574yv7oiwfeinomdzmc3m
   eslint-plugin-node: 11.1.0_eslint@8.26.0
   eslint-plugin-react: 7.31.10_eslint@8.26.0
-  eslint-plugin-v3xlabs: 1.5.2_wyqvi574yv7oiwfeinomdzmc3m
   postcss: 8.4.18
   prettier: 2.7.1
   tailwindcss: 3.2.2_postcss@8.4.18
@@ -1394,6 +1394,29 @@ packages:
       semver: 6.3.0
     dev: true
 
+  /eslint-plugin-lvksh/1.4.1_wyqvi574yv7oiwfeinomdzmc3m:
+    resolution: {integrity: sha512-WNLRH6RalrhH5Gs+2AB42O4EZ1u4wmKdV2EDXSugwnRl79NpXHfNA+O0cC5Z6hzGTJkGru5MkcFgjhU79VRSLg==}
+    deprecated: Deprecated in favor of eslint-plugin-v3xlabs.
+    dependencies:
+      '@typescript-eslint/parser': 5.42.0_wyqvi574yv7oiwfeinomdzmc3m
+      eslint-config-prettier: 8.5.0_eslint@8.26.0
+      eslint-plugin-jest: 26.9.0_wyqvi574yv7oiwfeinomdzmc3m
+      eslint-plugin-jsx-a11y: 6.6.1_eslint@8.26.0
+      eslint-plugin-prefer-arrow: 1.2.3_eslint@8.26.0
+      eslint-plugin-prettier: 4.2.1_aniwkeyvlpmwkidetuytnokvcm
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@8.26.0
+      eslint-plugin-sonarjs: 0.11.0_eslint@8.26.0
+      eslint-plugin-unicorn: 41.0.1_eslint@8.26.0
+      eslint-plugin-unused-imports: 2.0.0_eslint@8.26.0
+      prettier: 2.7.1
+    transitivePeerDependencies:
+      - '@typescript-eslint/eslint-plugin'
+      - eslint
+      - jest
+      - supports-color
+      - typescript
+    dev: true
+
   /eslint-plugin-node/11.1.0_eslint@8.26.0:
     resolution: {integrity: sha512-oUwtPJ1W0SKD0Tr+wqu92c5xuCeQqB3hSCHasn/ZgjFdA9iDGNkNf2Zi9ztY7X+hNuMib23LNGRm6+uN+KLE3g==}
     engines: {node: '>=8.10.0'}
@@ -1509,28 +1532,6 @@ packages:
     dependencies:
       eslint: 8.26.0
       eslint-rule-composer: 0.3.0
-    dev: true
-
-  /eslint-plugin-v3xlabs/1.5.2_wyqvi574yv7oiwfeinomdzmc3m:
-    resolution: {integrity: sha512-ALZsiItMF9yENC4hbv1HIxj1BfmUVUOMkfrDg/B1bbZqtvPNssKbvRwIFSFKMLD2/U1rUAk7ht9OQ2/1WDkMWg==}
-    dependencies:
-      '@typescript-eslint/parser': 5.42.0_wyqvi574yv7oiwfeinomdzmc3m
-      eslint-config-prettier: 8.5.0_eslint@8.26.0
-      eslint-plugin-jest: 26.9.0_wyqvi574yv7oiwfeinomdzmc3m
-      eslint-plugin-jsx-a11y: 6.6.1_eslint@8.26.0
-      eslint-plugin-prefer-arrow: 1.2.3_eslint@8.26.0
-      eslint-plugin-prettier: 4.2.1_aniwkeyvlpmwkidetuytnokvcm
-      eslint-plugin-simple-import-sort: 7.0.0_eslint@8.26.0
-      eslint-plugin-sonarjs: 0.11.0_eslint@8.26.0
-      eslint-plugin-unicorn: 41.0.1_eslint@8.26.0
-      eslint-plugin-unused-imports: 2.0.0_eslint@8.26.0
-      prettier: 2.7.1
-    transitivePeerDependencies:
-      - '@typescript-eslint/eslint-plugin'
-      - eslint
-      - jest
-      - supports-color
-      - typescript
     dev: true
 
   /eslint-rule-composer/0.3.0:

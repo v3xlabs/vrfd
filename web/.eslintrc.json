@@ -4,12 +4,12 @@
     "ecmaVersion": 2022
   },
   "extends": [
-    "plugin:v3xlabs/recommended",
+    "plugin:lvksh/recommended",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended"
   ],
   "ignorePatterns": ["!**/*"],
-  "plugins": ["v3xlabs", "react", "node", "jsx-a11y"],
+  "plugins": ["lvksh", "react", "node", "jsx-a11y"],
   "env": {
     "browser": true,
     "node": true,

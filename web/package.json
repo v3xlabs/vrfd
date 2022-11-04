@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "lint": "eslint -c .eslintrc.json --ext .ts,.tsx,.json ./src",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -18,14 +19,15 @@
   "devDependencies": {
     "@types/react": "^18.0.22",
     "@types/react-dom": "^18.0.7",
+    "@typescript-eslint/parser": "^5.26.0",
     "@types/styled-components": "^5.1.26",
     "@vitejs/plugin-react": "^2.2.0",
     "autoprefixer": "^10.4.13",
-    "eslint": "^8.26.0",
+    "eslint": "^8.16.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-lvksh": "1.4.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-react": "^7.31.10",
-    "eslint-plugin-v3xlabs": "^1.5.2",
+    "eslint-plugin-react": "^7.30.0",
     "postcss": "^8.4.18",
     "prettier": "^2.7.1",
     "tailwindcss": "^3.2.2",
