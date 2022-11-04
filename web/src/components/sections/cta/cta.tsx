@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 export const CTASection: FC = () => {
     return (
-        <div className="w-full h-[80vh] bg-ens-gradient-primary relative">
+        <div className="w-full h-[85vh] bg-ens-gradient-primary relative">
             <svg
                 className="h-20 xl:h-60 absolute bottom-0 left-0 w-full"
                 width="100%"

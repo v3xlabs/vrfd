@@ -13,12 +13,14 @@ export const HomePage: FC = () => {
             w-full min-h-screen
             bg-grey1"
         >
-            <div className="flex flex-col gap-48 pb-48">
+            <div className="flex flex-col pb-48 gap-10">
                 <CTASection />
-                <AboutSection />
-                <EasyToUseSection />
-                <GovernanceSection />
-                <WhoWhatWhyWhereSection />
+                <div className="flex flex-col gap-28">
+                    <AboutSection />
+                    <EasyToUseSection />
+                    <GovernanceSection />
+                    <WhoWhatWhyWhereSection />
+                </div>
             </div>
             <Footer />
         </div>
