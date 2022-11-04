@@ -1,5 +1,7 @@
+import { lightTheme, ThorinGlobalStyles } from '@ensdomains/thorin';
 import { FC } from 'react';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 
 import { HomePage } from './pages/home';
 
@@ -29,7 +31,10 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className="w-full max-w-full min-h-screen bg-white">
-      <RouterProvider router={router} />
+      <ThemeProvider theme={lightTheme}>
+        <ThorinGlobalStyles />
+        <RouterProvider router={router} />
+      </ThemeProvider>
     </div>
   );
 }
