@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 
 import { NotFoundPage } from './pages/404';
 import { HomePage } from './pages/home';
+import { VerifyPage } from './pages/verify';
 
 const Root: FC = () => {
     return (
@@ -24,6 +25,16 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <HomePage />,
+                // loader: teamLoader,
+            },
+            {
+                path: '/verify',
+                element: <VerifyPage />,
+                // loader: teamLoader,
+            },
+            {
+                path: '*',
+                element: <NotFoundPage />,
                 // loader: teamLoader,
             },
         ],
