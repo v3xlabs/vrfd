@@ -1,8 +1,7 @@
+import { AboutSection } from '@components/sections/about/about';
+import { CTASection } from '@components/sections/cta/cta';
+import { Footer } from '@components/sections/footer/footer';
 import { FC } from 'react';
-
-import { AboutSection } from '../components/sections/about/about';
-import { CTASection } from '../components/sections/cta/cta';
-import { Footer } from '../components/sections/footer/footer';
 
 export const HomePage: FC = () => {
     return (
