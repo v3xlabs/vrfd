@@ -2,6 +2,7 @@ import { FC } from 'react';
 
 import { AboutSection } from '../components/sections/about/about';
 import { CTASection } from '../components/sections/cta/cta';
+import { Footer } from '../components/sections/footer/footer';
 
 export const HomePage: FC = () => {
     return (
@@ -9,6 +10,7 @@ export const HomePage: FC = () => {
             hello from home page
             <CTASection />
             <AboutSection />
+            <Footer />
         </div>
     );
 };

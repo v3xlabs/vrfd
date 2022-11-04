@@ -12,8 +12,10 @@
         "@ensdomains/thorin": "^0.6.20",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-feather": "^2.0.10",
         "react-router": "^6.4.3",
         "react-router-dom": "^6.4.3",
+        "react-transition-state": "^2.0.2",
         "styled-components": "^5.3.6"
     },
     "devDependencies": {
