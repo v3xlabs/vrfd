@@ -2,6 +2,7 @@ import { AboutSection } from '@components/sections/about/about';
 import { CTASection } from '@components/sections/cta/cta';
 import { EasyToUseSection } from '@components/sections/easytouse/easyToUse';
 import { Footer } from '@components/sections/footer/footer';
+import { GovernanceSection } from '@components/sections/governance/governance';
 import { WhoWhatWhyWhereSection } from '@components/sections/whowhatwhywhere/whoWhatWhyWhere';
 import { FC } from 'react';
 
@@ -16,6 +17,7 @@ export const HomePage: FC = () => {
                 <CTASection />
                 <AboutSection />
                 <EasyToUseSection />
+                <GovernanceSection />
                 <WhoWhatWhyWhereSection />
             </div>
             <Footer />
