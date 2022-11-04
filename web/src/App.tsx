@@ -1,3 +1,4 @@
+import { Navbar } from '@components/Navbar';
 import { lightTheme, ThorinGlobalStyles } from '@ensdomains/thorin';
 import { FC } from 'react';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
@@ -46,6 +47,7 @@ function App() {
         <div className="w-full max-w-full min-h-screen bg-white">
             <ThemeProvider theme={lightTheme}>
                 <ThorinGlobalStyles />
+                <Navbar />
                 <RouterProvider router={router} />
             </ThemeProvider>
         </div>
