@@ -7,13 +7,13 @@ export const EasyToUseSection: FC = () => {
     return (
         <Container>
             <SectionHeader>Easy to use!</SectionHeader>
-            <div className="font-bold text-neutral-800 max-w-sm">
+            <div className="font-bold text-neutral-700 max-w-sm">
                 Checking for verification is as simple as comparing two ENS
                 names against each other.
             </div>
             <div className="flex flex-col py-4 px-6 shadow-md bg-white rounded-xl text-lg font-bold">
                 <span>
-                    <span>vitalik.eth</span>
+                    <span className="text-neutral-800">vitalik.eth</span>
                     <span className="text-neutral-600">
                         <span className={'p-2'}>{'//'}</span>
                         0xd8d&hellip;96045
@@ -21,7 +21,9 @@ export const EasyToUseSection: FC = () => {
                 </span>
                 <span>==</span>
                 <span>
-                    <span>vitalik.eth.vrfd.eth</span>
+                    <span className="text-neutral-800">
+                        vitalik.eth.vrfd.eth
+                    </span>
                     <span className="text-neutral-600">
                         <span className={'p-2'}>{'//'}</span>
                         0xd8d&hellip;96045

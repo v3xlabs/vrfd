@@ -13,8 +13,10 @@ export const AboutSection: FC = () => {
                 ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum
                 dolor sit amet. Lorem ipsum dolor sit amet.
             </div>
-            <div className="w-48">
-                <Button variant="primary">Get involved</Button>
+            <div className="w-44">
+                <Button variant="primary" size={'extraSmall'}>
+                    Get involved
+                </Button>
             </div>
         </Container>
     );
