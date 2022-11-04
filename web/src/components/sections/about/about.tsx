@@ -1,3 +1,4 @@
+import { SectionHeader } from '@components/SectionHeader';
 import { Button } from '@ensdomains/thorin';
 import { FC } from 'react';
 
@@ -6,9 +7,7 @@ import Container from '../../Container';
 export const AboutSection: FC = () => {
     return (
         <Container>
-            <div className="text-4xl font-bold text-transparent bg-clip-text bg-ens-gradient-primary">
-                About
-            </div>
+            <SectionHeader>About</SectionHeader>
             <div className="max-w-lg">
                 Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem
                 ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum

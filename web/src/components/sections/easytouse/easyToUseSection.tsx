@@ -1,3 +1,4 @@
+import { SectionHeader } from '@components/SectionHeader';
 import { FC } from 'react';
 
 import Container from '../../Container';
@@ -5,9 +6,7 @@ import Container from '../../Container';
 export const EasyToUseSection: FC = () => {
     return (
         <Container>
-            <div className="text-4xl font-bold text-transparent bg-clip-text bg-ens-gradient-primary">
-                Easy to use!
-            </div>
+            <SectionHeader>Easy to use!</SectionHeader>
             <div className="font-bold text-neutral-800 max-w-sm">
                 Checking for verification is as simple as comparing two ENS
                 names against each other.
