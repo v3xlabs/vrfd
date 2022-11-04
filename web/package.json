@@ -1,37 +1,38 @@
 {
-  "name": "@vrfd/web",
-  "version": "0.0.0",
-  "license": "GPL-3.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint -c .eslintrc.json --ext .ts,.tsx,.json ./src",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@ensdomains/thorin": "^0.6.20",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router": "^6.4.3",
-    "react-router-dom": "^6.4.3",
-    "styled-components": "^5.3.6"
-  },
-  "devDependencies": {
-    "@types/react": "^18.0.22",
-    "@types/react-dom": "^18.0.7",
-    "@typescript-eslint/parser": "^5.26.0",
-    "@types/styled-components": "^5.1.26",
-    "@vitejs/plugin-react": "^2.2.0",
-    "autoprefixer": "^10.4.13",
-    "eslint": "^8.16.0",
-    "eslint-plugin-jsx-a11y": "^6.6.1",
-    "eslint-plugin-lvksh": "1.4.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-react": "^7.30.0",
-    "postcss": "^8.4.18",
-    "prettier": "^2.7.1",
-    "tailwindcss": "^3.2.2",
-    "typescript": "^4.6.4",
-    "vite": "^3.2.0"
-  }
+    "name": "@vrfd/web",
+    "version": "0.0.0",
+    "license": "GPL-3.0",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "lint": "eslint -c .eslintrc.json --ext .ts ./src",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@ensdomains/thorin": "^0.6.20",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-router": "^6.4.3",
+        "react-router-dom": "^6.4.3",
+        "styled-components": "^5.3.6"
+    },
+    "devDependencies": {
+        "@types/react": "^18.0.22",
+        "@types/react-dom": "^18.0.7",
+        "@types/styled-components": "^5.1.26",
+        "@typescript-eslint/parser": "^5.42.0",
+        "@vitejs/plugin-react": "^2.2.0",
+        "autoprefixer": "^10.4.13",
+        "eslint": "^8.26.0",
+        "eslint-plugin-jsx-a11y": "^6.6.1",
+        "eslint-plugin-lvksh": "1.4.1",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-react": "^7.30.0",
+        "eslint-plugin-v3xlabs": "^1.5.2",
+        "postcss": "^8.4.18",
+        "prettier": "^2.7.1",
+        "tailwindcss": "^3.2.2",
+        "typescript": "^4.8.4",
+        "vite": "^3.2.0"
+    }
 }
