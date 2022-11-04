@@ -1,0 +1,38 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ['./src/**/*.{ts,tsx}'],
+  theme: {
+    extend: {
+      screens: {
+        xs: '420px',
+      },
+      colors: {
+        blue: '#5298FF',
+        green: '#49B393',
+        red: '#D55555',
+        orange: '#FF9500',
+        indigo: '#5854D6',
+        pink: '#FF2D55',
+        purple: '#AF52DE',
+        teal: '#5AC8FA',
+        yellow: '#E8B811',
+        grey: '#E8E8E8',
+        black: '#333333',
+        grey3: '#454545',
+        grey2: '#9B9BA7',
+        grey1: '#F6F6F6',
+        white: '#FFFFFF',
+        bluelight: '#EEF5FF',
+        redlight: '#F9E7E7',
+        greenlight: '#E7F4EF',
+        yellowlight: '#FFF5CD',
+        lgradient: '',
+      },
+    },
+    backgroundImage: (theme) => ({
+      'ens-gradient-primary':
+        'linear-gradient(330.4deg, #44BCF0 4.54%, #7298F8 59.2%, #A099FF 148.85%)',
+    }),
+  },
+  plugins: [],
+};
