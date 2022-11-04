@@ -1,5 +1,5 @@
 import { FC } from 'react';
 
 export const AboutSection: FC = () => {
-  return <>Landing about</>;
+  return <div className="w-full">Landing about</div>;
 };
