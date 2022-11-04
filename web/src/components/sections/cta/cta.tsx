@@ -1,5 +1,5 @@
 import { FC } from 'react';
 
-export const LandingSection: FC = () => {
+export const CTASection: FC = () => {
   return <>Landing section</>;
 };

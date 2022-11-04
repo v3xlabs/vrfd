@@ -1,5 +1,11 @@
 import { FC } from 'react';
+import { AboutSection } from '../components/sections/about/about';
+import { CTASection } from '../components/sections/cta/cta';
 
 export const HomePage: FC = () => {
-  return <>hello from home page</>;
+  return (<div>
+    hello from home page
+    <CTASection />
+    <AboutSection />
+  </div>);
 };

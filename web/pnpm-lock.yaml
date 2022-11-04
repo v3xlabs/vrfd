@@ -15,6 +15,7 @@ specifiers:
   react: ^18.2.0
   react-dom: ^18.2.0
   react-router: ^6.4.3
+  react-router-dom: ^6.4.3
   tailwindcss: ^3.2.2
   typescript: ^4.6.4
   vite: ^3.2.0
@@ -23,6 +24,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-router: 6.4.3_react@18.2.0
+  react-router-dom: 6.4.3_biqbaboplfbrettd7655fr4n2y
 
 devDependencies:
   '@types/react': 18.0.25
@@ -2441,6 +2443,19 @@ packages:
     resolution: {integrity: sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /react-router-dom/6.4.3_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-MiaYQU8CwVCaOfJdYvt84KQNjT78VF0TJrA17SIQgNHRvLnXDJO6qsFqq8F/zzB1BWZjCFIrQpu4QxcshitziQ==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.0.3
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-router: 6.4.3_react@18.2.0
+    dev: false
 
   /react-router/6.4.3_react@18.2.0:
     resolution: {integrity: sha512-BT6DoGn6aV1FVP5yfODMOiieakp3z46P1Fk0RNzJMACzE7C339sFuHebfvWtnB4pzBvXXkHP2vscJzWRuUjTtA==}
