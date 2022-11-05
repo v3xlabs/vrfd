@@ -91,8 +91,6 @@ const NameSection: FC<{ name: string }> = ({ name }) => {
         name,
     });
 
-    console.log({ data, isLoading, isError });
-
     return (
         <>
             {isLoading && !isError && !data && <div>Loading...</div>}
