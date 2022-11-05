@@ -5,6 +5,7 @@ const Container: FC<{
     children: ReactNode;
     className?: string;
     noPadding?: boolean;
+    size?: 'large' | 'small';
 }> = (properties) => {
     return (
         <div
@@ -15,7 +16,10 @@ const Container: FC<{
         >
             <div
                 className={cx(
-                    'w-full max-w-2xl mx-auto text-center flex flex-col items-center gap-6',
+                    'w-full mx-auto text-center flex flex-col items-center gap-6',
+                    properties.size == undefined || properties.size == 'large'
+                        ? 'max-w-2xl'
+                        : 'max-w-md',
                     properties.className
                 )}
             >

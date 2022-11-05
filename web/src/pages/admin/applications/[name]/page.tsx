@@ -1,6 +1,7 @@
-import { Button, Card, Dropdown, Input, Skeleton } from '@ensdomains/thorin';
+import { Modal } from '@components/Modal';
+import { Button, Card, Input, Skeleton } from '@ensdomains/thorin';
 import { cx } from '@utils/cx';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { ChevronLeft } from 'react-feather';
 import { useNavigate, useParams } from 'react-router';
 import { useEnsAddress, useEnsAvatar } from 'wagmi';
@@ -45,6 +46,14 @@ export const AdminNameDetailsPage: FC = () => {
     });
 
     const nav = useNavigate();
+
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const [modalData, setModalData] = useState<{
+        title: string;
+        type: string;
+        denyAs?: string;
+    }>();
 
     return (
         <ApplicationsContainer>
@@ -124,26 +133,70 @@ export const AdminNameDetailsPage: FC = () => {
                                 )}
                             </div>
 
-                            <div className="flex flex-col md:flex-row gap-5">
-                                <Button className="!bg-green">Approve</Button>
-                                <Dropdown
-                                    label="Deny"
-                                    color="red"
-                                    className="!w-96"
-                                    items={[
-                                        {
-                                            label: 'as Incorrect',
-                                            onClick: () => {},
-                                            color: 'red',
-                                        },
-                                        {
-                                            label: 'as Typo',
-                                            onClick: () => {},
-                                            color: 'red',
-                                        },
-                                    ]}
-                                />
+                            <div className="flex flex-col gap-5">
+                                <Button
+                                    className="!bg-green"
+                                    onClick={() => {
+                                        setModalData({
+                                            title: 'Approve',
+                                            type: 'approve',
+                                        });
+                                        setModalOpen(true);
+                                    }}
+                                >
+                                    Approve
+                                </Button>
+                                <div className="flex flex-col md:flex-row gap-5">
+                                    <Button
+                                        className="!bg-red"
+                                        onClick={() => {
+                                            setModalData({
+                                                title: 'Deny as Incorrect',
+                                                type: 'deny',
+                                                denyAs: 'Incorrect',
+                                            });
+                                            setModalOpen(true);
+                                        }}
+                                    >
+                                        Deny as Incorrect
+                                    </Button>
+                                    <Button
+                                        className="!bg-red"
+                                        onClick={() => {
+                                            setModalData({
+                                                title: 'Deny as Typo',
+                                                type: 'deny',
+                                                denyAs: 'Typo',
+                                            });
+                                            setModalOpen(true);
+                                        }}
+                                    >
+                                        Deny as Typo
+                                    </Button>
+                                </div>
                             </div>
+
+                            {modalData !== undefined && modalOpen && (
+                                <Modal label={modalData.title} open>
+                                    Are you sure you want to {modalData.type}{' '}
+                                    this application
+                                    {modalData.denyAs != undefined
+                                        ? ` as ${modalData.denyAs}`
+                                        : ''}
+                                    ?
+                                    <div className="flex gap-5">
+                                        <Button>Confirm</Button>
+                                        <Button
+                                            className="!bg-red"
+                                            onClick={() => {
+                                                setModalOpen(false);
+                                            }}
+                                        >
+                                            Cancel
+                                        </Button>
+                                    </div>
+                                </Modal>
+                            )}
                         </div>
                     </>
                 )}
