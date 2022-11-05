@@ -1,6 +1,6 @@
 import { cx } from '@utils/cx';
-import { FC, ReactNode } from 'react';
-import { AlertCircle, FileText, Home } from 'react-feather';
+import { FC, ReactNode, useState } from 'react';
+import { AlertCircle, FileText, Home, Menu, X } from 'react-feather';
 import { Link } from 'react-router-dom';
 
 const NavItem: FC<{ children: ReactNode; active?: boolean; to: string }> = (
@@ -25,35 +25,63 @@ export type PagesType = 'home' | 'applications' | 'disputes';
 export const AdminNavbar: FC<{
     active: PagesType;
 }> = (properties) => {
-    return (
-        <nav className="w-[18rem] min-w-[18rem] bg-neutral-900 text-white pl-4 pr-5 py-5">
-            <Link
-                to="/"
-                className="font-bold text-3xl flex my-10 justify-center"
-            >
-                vrfd.eth
-            </Link>
+    const [mobileNavActive, setMobileNavActive] = useState(false);
 
-            <div className="flex flex-col gap-1">
-                <NavItem active={properties.active == 'home'} to="/admin">
-                    <Home />
-                    <span>Home</span>
-                </NavItem>
-                <NavItem
-                    active={properties.active == 'applications'}
-                    to="/admin/applications"
+    return (
+        <>
+            <nav className="z-50 block md:hidden sticky top-0 left-0 w-full bg-neutral-900 h-14 px-5">
+                <div className="flex items-center justify-between h-full w-full text-white">
+                    <button
+                        onClick={() => {
+                            setMobileNavActive(!mobileNavActive);
+                        }}
+                    >
+                        {mobileNavActive ? <X /> : <Menu />}
+                    </button>
+
+                    <Link
+                        to="/"
+                        className="font-bold text-xl flex my-10 justify-center"
+                    >
+                        vrfd.eth
+                    </Link>
+                </div>
+            </nav>
+            <nav
+                className={cx(
+                    mobileNavActive &&
+                        'absolute top-0 md:static h-screen !block',
+                    'hidden md:block w-[18rem] min-w-[18rem] bg-neutral-900 text-white pl-4 pr-5 py-5'
+                )}
+            >
+                <Link
+                    to="/"
+                    className="font-bold text-3xl flex my-10 justify-center"
                 >
-                    <FileText />
-                    <span>Applications</span>
-                </NavItem>
-                <NavItem
-                    active={properties.active == 'disputes'}
-                    to="/admin/disputes"
-                >
-                    <AlertCircle />
-                    <span>Disputes</span>
-                </NavItem>
-            </div>
-        </nav>
+                    vrfd.eth
+                </Link>
+
+                <div className="flex flex-col gap-1">
+                    <NavItem active={properties.active == 'home'} to="/admin">
+                        <Home />
+                        <span>Home</span>
+                    </NavItem>
+                    <NavItem
+                        active={properties.active == 'applications'}
+                        to="/admin/applications"
+                    >
+                        <FileText />
+                        <span>Applications</span>
+                    </NavItem>
+                    <NavItem
+                        active={properties.active == 'disputes'}
+                        to="/admin/disputes"
+                    >
+                        <AlertCircle />
+                        <span>Disputes</span>
+                    </NavItem>
+                </div>
+            </nav>
+        </>
     );
 };
