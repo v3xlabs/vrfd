@@ -3,12 +3,14 @@ import v3xLabsIcon from '@assets/v3xLabsIcon.png';
 import Container from '@components/Container';
 import { CtaWaved } from '@components/CtaWaved';
 import { Input } from '@ensdomains/thorin';
-import { FC } from 'react';
+import { FC, useRef } from 'react';
 import { ArrowRight } from 'react-feather';
 
 export const CTASection: FC<{ initialInputValue?: string }> = ({
     initialInputValue,
 }) => {
+    const inputReference = useRef<HTMLInputElement>(null);
+
     return (
         <CtaWaved>
             <Container>
@@ -19,6 +21,11 @@ export const CTASection: FC<{ initialInputValue?: string }> = ({
                     <form
                         method="GET"
                         action="/verify/"
+                        onSubmit={(event) => {
+                            if (inputReference.current?.value.length === 0) {
+                                event.preventDefault();
+                            }
+                        }}
                         className="w-full flex justify-center"
                     >
                         <div className="flex items-stretch rounded-xl w-full max-w-lg relative">
@@ -27,6 +34,7 @@ export const CTASection: FC<{ initialInputValue?: string }> = ({
                                     label=""
                                     id="name"
                                     name="name"
+                                    ref={inputReference}
                                     placeholder="v3x.eth"
                                     defaultValue={initialInputValue}
                                     style={{ width: '100%' }}
