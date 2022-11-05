@@ -2,7 +2,7 @@ import Container from '@components/Container';
 import { CtaWaved } from '@components/CtaWaved';
 import { FC } from 'react';
 
-export const CTASection: FC = () => {
+export const CTASection: FC<{ initialInputValue?: string }> = (properties) => {
     return (
         <CtaWaved>
             <Container>
@@ -15,8 +15,9 @@ export const CTASection: FC = () => {
                     <form method="GET" action="/verify">
                         <div className="mt-4 flex rounded-xl bg-white w-full max-w-md">
                             <input
+                                defaultValue={properties.initialInputValue}
                                 id="name"
-                                name="Ens Name"
+                                name="name"
                                 placeholder="v3x.eth"
                                 className="h-full w-full px-5 py-4 bg-transparent"
                             />

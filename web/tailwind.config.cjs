@@ -33,6 +33,9 @@ module.exports = {
             'ens-gradient-primary':
                 'linear-gradient(330.4deg, #44BCF0 4.54%, #7298F8 59.2%, #A099FF 148.85%)',
         }),
+        boxShadow: {
+            '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
+        },
     },
     plugins: [],
 };
