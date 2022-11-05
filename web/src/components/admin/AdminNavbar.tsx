@@ -29,7 +29,7 @@ export const AdminNavbar: FC<{
 
     return (
         <>
-            <nav className="z-50 block md:hidden sticky top-0 left-0 w-full bg-neutral-900 h-14 px-5">
+            <nav className="z-50 block lg:hidden sticky top-0 left-0 w-full bg-neutral-900 h-14 px-5">
                 <div className="flex items-center justify-between h-full w-full text-white">
                     <button
                         onClick={() => {
@@ -49,8 +49,9 @@ export const AdminNavbar: FC<{
             </nav>
             <nav
                 className={cx(
-                    mobileNavActive && 'fixed top-0 md:static h-screen !block',
-                    'hidden md:block w-[18rem] min-w-[18rem] bg-neutral-900 text-white pl-4 pr-5 py-5'
+                    mobileNavActive &&
+                        'z-40 fixed top-0 lg:static h-screen !block',
+                    'hidden lg:block w-[18rem] min-w-[18rem] bg-neutral-900 text-white pl-4 pr-5 py-5'
                 )}
             >
                 <Link
