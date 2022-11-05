@@ -1,8 +1,8 @@
-import tempImage from '@assets/temp-image.gif';
 import Container from '@components/Container';
 import { Layout } from '@components/Layout';
 import { CTASection } from '@components/sections/cta/cta';
-import { Button } from '@ensdomains/thorin';
+import { Button, Skeleton } from '@ensdomains/thorin';
+import { cx } from '@utils/cx';
 import { FetchEnsAddressResult } from '@wagmi/core';
 import { FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -31,11 +31,19 @@ const Profile: FC<{ name: string; address: FetchEnsAddressResult }> = ({
         <>
             <div className="flex justify-center items-center flex-col gap-5">
                 <div className="flex flex-col md:flex-row gap-7 md:gap-14 items-center">
-                    <img
-                        className="w-28 rounded-3xl"
-                        src={avatar ?? tempImage}
-                        alt="Profile"
-                    />
+                    <Skeleton
+                        loading={avatarLoading}
+                        className={cx(
+                            'w-28 h-28 rounded-3xl',
+                            !avatarLoading && avatar == undefined && 'hidden'
+                        )}
+                    >
+                        <img
+                            className="w-28 rounded-3xl"
+                            src={avatar == undefined ? undefined : avatar}
+                            alt="Profile"
+                        />
+                    </Skeleton>
                     <h2 className="text-4xl">{name}</h2>
                 </div>
                 <span className="text-md break-all text-grey2">{address}</span>
@@ -112,16 +120,16 @@ const NameSection: FC<{ name: string }> = ({ name }) => {
 export const VerifyPage: FC = () => {
     const [searchParameters, _setSearchParaters] = useSearchParams();
 
-    const rawName = searchParameters.get('name');
-    const name = addEnsIfNot(rawName);
+    const name = addEnsIfNot(searchParameters.get('name'));
 
     return (
         <Layout>
             <CTASection initialInputValue={name} />
 
             <Container>
-                {name && <NameSection name={name} />}
-                {!name && (
+                {name ? (
+                    <NameSection name={name} />
+                ) : (
                     <div className="text-4xl text-gray pb-32">
                         You need to enter a name to verify
                     </div>
@@ -129,26 +137,4 @@ export const VerifyPage: FC = () => {
             </Container>
         </Layout>
     );
-
-    // return (
-    //     <Layout>
-    //         {searchParameters.get('name') ? (
-    //             <>
-    //                 <CTASection initialInputValue={name} />
-
-    //                 <Container></Container>
-    //             </>
-    //         ) : (
-    //             <>
-    //                 <CTASection />
-
-    //                 <Container>
-    //                     <div className="text-4xl text-gray pb-32">
-    //                         You need to enter a name to verify
-    //                     </div>
-    //                 </Container>
-    //             </>
-    //         )}
-    //     </Layout>
-    // );
 };
