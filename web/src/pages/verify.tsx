@@ -1,7 +1,6 @@
 import tempImage from '@assets/temp-image.gif';
 import Container from '@components/Container';
 import { CTASection } from '@components/sections/cta/cta';
-import { Footer } from '@components/sections/footer/footer';
 import { FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -43,8 +42,20 @@ export const VerifyPage: FC = () => {
                         </div>
 
                         {/* Border not working, box shadow not working????, todo: add box */}
-                        <div className="p-5 border-3 border-red-100 w-full">
-                            as
+                        <div className="px-10 py-7 border-2 w-full flex flex-col items-start rounded-lg">
+                            <h4 className="text-2xl font-semibold">Info</h4>
+
+                            <table className="table-auto">
+                                <tbody>
+                                    <tr>
+                                        <th>lol</th>
+                                        <th>lol</th>
+                                    </tr>
+                                    <tr>
+                                        <th>lol</th>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </Container>
                 </>
@@ -59,7 +70,6 @@ export const VerifyPage: FC = () => {
                     </Container>
                 </>
             )}
-            <Footer />
         </div>
     );
 };

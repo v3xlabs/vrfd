@@ -1,4 +1,5 @@
 import { Navbar } from '@components/Navbar';
+import { Footer } from '@components/sections/footer/footer';
 import { lightTheme, ThorinGlobalStyles } from '@ensdomains/thorin';
 import { FC } from 'react';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
@@ -44,11 +45,14 @@ const router = createBrowserRouter([
 
 function App() {
     return (
-        <div className="w-full max-w-full min-h-screen bg-white">
+        <div>
             <ThemeProvider theme={lightTheme}>
                 <ThorinGlobalStyles />
                 <Navbar />
-                <RouterProvider router={router} />
+                <div className="flex flex-col w-full min-h-screen bg-grey1">
+                    <RouterProvider router={router} />
+                    <Footer />
+                </div>
             </ThemeProvider>
         </div>
     );
