@@ -12,7 +12,7 @@ export const Footer: FC<{ noTopMargin?: boolean }> = (properties) => {
             )}
         >
             <div className="flex flex-col sm:flex-row gap-2 justify-between items-center w-full max-w-[800px]">
-                <div className="flex gap-6">
+                <div className="flex gap-6 text-grey2">
                     <a
                         target={'_blank'}
                         href={'https://github.com/v3xlabs/vrfd'}
@@ -28,7 +28,7 @@ export const Footer: FC<{ noTopMargin?: boolean }> = (properties) => {
                         <Twitter size={'28px'} />
                     </a>
                 </div>
-                <span className={'text-base'}>
+                <span className={'text-sm text-grey2'}>
                     &copy; Copyright V3X Labs 2022. All Rights Reserved.
                 </span>
             </div>
