@@ -7,7 +7,7 @@ import { publicProvider } from 'wagmi/providers/public';
 
 import { NotFoundPage } from './pages/404';
 import { HomePage } from './pages/home';
-import { VerifyPage } from './pages/verify';
+import { VerifyPage } from './pages/verify/page';
 
 const Root: FC = () => {
     return (
