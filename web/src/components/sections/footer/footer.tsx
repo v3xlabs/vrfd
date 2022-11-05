@@ -3,7 +3,7 @@ import { GitHub, Twitter } from 'react-feather';
 
 export const Footer: FC = () => {
     return (
-        <footer className="w-full flex bg-white justify-center items-center p-6 border-2 border-solid border-t-neutral-300 border-r-0 border-l-0 border-b-0 mt-auto">
+        <footer className="w-full flex bg-white justify-center items-center p-6 border-2 border-solid border-t-neutral-300 border-r-0 border-l-0 border-b-0 mt-44">
             <div className="flex flex-col sm:flex-row gap-2 justify-between items-center w-full max-w-[800px]">
                 <div className="flex gap-6">
                     <a
