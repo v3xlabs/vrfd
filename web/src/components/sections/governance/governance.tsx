@@ -8,14 +8,14 @@ export const GovernanceSection: FC = () => {
         <Container>
             <SectionHeader>Governance</SectionHeader>
             <p className="max-w-lg">
-                Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem
-                ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum
-                dolor sit amet. Lorem ipsum dolor sit amet.
+                In its current state vrfd.eth allows us to specify a wallet
+                address as &quot;trusted&quot; this means that that wallet has
+                the ability to approve and deny cases, aswell as revoke names.
+                In the ideal situation this would be the address of a DAO
+                working group, or a multi-signature wallet.
             </p>
             <div className="w-44">
-                <Button variant="primary" size={'extraSmall'}>
-                    Get involved
-                </Button>
+                <Button variant="primary">Get involved</Button>
             </div>
         </Container>
     );

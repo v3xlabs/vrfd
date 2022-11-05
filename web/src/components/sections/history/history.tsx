@@ -1,4 +1,5 @@
 import Container from '@components/Container';
+import { Link } from '@components/Link';
 import { SectionHeader } from '@components/SectionHeader';
 import { FC } from 'react';
 
@@ -6,17 +7,15 @@ export const HistorySection: FC = () => {
     return (
         <Container>
             <SectionHeader>Who What Why Where?</SectionHeader>
-            <div className="font-bold text-neutral-700">
-                VRFD.eth was developed by V3XLabs during a hackathon at{' '}
-                <a
-                    target="_blank"
-                    href="https://sf.ethglobal.com/"
-                    rel="noreferrer"
-                    className="text-blue hover:brightness-90"
-                >
-                    ETH San Francisco.
-                </a>
-            </div>
+            <p>
+                Originally based off of a blogpost by{' '}
+                <Link href="https://mirror.xyz/jefflau.eth/0PMm9s7G_a9KpXiYGnfWPuhNntZqJFlpmuVlSJbCD6s">
+                    Jeff Lau
+                </Link>
+                , vrfd.eth was built as an initiative by V3XLabs during the{' '}
+                <Link href="https://sf.ethglobal.com/">ETHSanFrancisco</Link>{' '}
+                hackathon.
+            </p>
         </Container>
     );
 };
