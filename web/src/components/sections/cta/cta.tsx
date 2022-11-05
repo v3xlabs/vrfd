@@ -16,7 +16,7 @@ export const CTASection: FC<{ initialInputValue?: string }> = ({
                     <h1 className="text-white font-bold text-6xl">vrfd.eth</h1>
                     <p className="text-white">Decentralized Blue Checkmark</p>
 
-                    <form method="GET" action="/verify">
+                    <form method="GET" action="/verify/">
                         <div className="flex rounded-xl w-screen max-w-sm items-stretch relative">
                             <div className="pb-2 w-full">
                                 <Input
