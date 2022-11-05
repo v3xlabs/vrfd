@@ -9,7 +9,7 @@ const Container: FC<{
         <div className="h-full flex w-full px-4">
             <div
                 className={cx(
-                    'w-full max-w-xl mx-auto text-center flex flex-col items-center gap-6',
+                    'w-full max-w-2xl mx-auto text-center flex flex-col items-center gap-6',
                     className
                 )}
             >

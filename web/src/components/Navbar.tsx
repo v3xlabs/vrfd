@@ -7,7 +7,6 @@ export const Navbar: FC = () => {
                 <a
                     className="text-white hover:underline cursor-pointer"
                     href="/"
-                    target="_blank"
                 >
                     vrfd.eth
                 </a>
