@@ -7,11 +7,11 @@ export const GovernanceSection: FC = () => {
     return (
         <Container>
             <SectionHeader>Governance</SectionHeader>
-            <div className="max-w-lg">
+            <p className="max-w-lg">
                 Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem
                 ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum
                 dolor sit amet. Lorem ipsum dolor sit amet.
-            </div>
+            </p>
             <div className="w-44">
                 <Button variant="primary" size={'extraSmall'}>
                     Get involved

@@ -3,14 +3,14 @@ import { FC } from 'react';
 
 import Container from '../../Container';
 
-export const EasyToUseSection: FC = () => {
+export const UsageSection: FC = () => {
     return (
         <Container>
             <SectionHeader>Easy to use!</SectionHeader>
-            <div className="font-bold text-neutral-700 max-w-sm">
+            <p className="max-w-sm">
                 Checking for verification is as simple as comparing two ENS
                 names against each other.
-            </div>
+            </p>
             <div className="flex flex-col py-4 px-6 shadow-md bg-white rounded-xl text-lg font-bold">
                 <span>
                     <span className="text-neutral-800">vitalik.eth</span>

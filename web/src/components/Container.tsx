@@ -5,7 +5,7 @@ const Container: FC<{
 }> = (properties) => {
     return (
         <div className="h-full flex w-full px-4">
-            <div className="w-full max-w-xl mx-auto text-center flex flex-col items-center gap-4">
+            <div className="w-full max-w-xl mx-auto text-center flex flex-col items-center gap-6">
                 {properties.children}
             </div>
         </div>

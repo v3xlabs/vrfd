@@ -2,7 +2,7 @@ import Container from '@components/Container';
 import { SectionHeader } from '@components/SectionHeader';
 import { FC } from 'react';
 
-export const WhoWhatWhyWhereSection: FC = () => {
+export const HistorySection: FC = () => {
     return (
         <Container>
             <SectionHeader>Who What Why Where?</SectionHeader>
