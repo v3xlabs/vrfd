@@ -1,3 +1,5 @@
+import ensIcon from '@assets/ensIcon.svg';
+import v3xLabsIcon from '@assets/v3xLabsIcon.png';
 import Container from '@components/Container';
 import { CtaWaved } from '@components/CtaWaved';
 import { FC } from 'react';
@@ -30,9 +32,17 @@ export const CTASection: FC<{ initialInputValue?: string }> = (properties) => {
                         </div>
                     </form>
 
-                    <div className="mt-4 flex flex-col text-center text-white gap-1">
-                        <span>type a name</span>
-                        <span>check the status</span>
+                    <div
+                        className="flex items-center gap-2 mt-2
+                    text-center text-white"
+                    >
+                        <img src={ensIcon} alt="Ens Icon" className="w-10" />
+                        <span className="text-base font-semibold">X</span>
+                        <img
+                            src={v3xLabsIcon}
+                            alt="V3X Labs Icon"
+                            className="w-10"
+                        />
                     </div>
                 </div>
             </Container>
