@@ -1,5 +1,3 @@
-import { Navbar } from '@components/Navbar';
-import { Footer } from '@components/sections/footer/footer';
 import { lightTheme, ThorinGlobalStyles } from '@ensdomains/thorin';
 import { FC } from 'react';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
@@ -34,11 +32,6 @@ const router = createBrowserRouter([
                 element: <VerifyPage />,
                 // loader: teamLoader,
             },
-            {
-                path: '*',
-                element: <NotFoundPage />,
-                // loader: teamLoader,
-            },
         ],
     },
 ]);
@@ -48,11 +41,7 @@ function App() {
         <div>
             <ThemeProvider theme={lightTheme}>
                 <ThorinGlobalStyles />
-                <Navbar />
-                <div className="flex flex-col w-full min-h-screen bg-grey1">
-                    <RouterProvider router={router} />
-                    <Footer />
-                </div>
+                <RouterProvider router={router} />
             </ThemeProvider>
         </div>
     );

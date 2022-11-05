@@ -1,3 +1,4 @@
+import { Layout } from '@components/Layout';
 import { AboutSection } from '@components/sections/about/about';
 import { CTASection } from '@components/sections/cta/cta';
 import { GovernanceSection } from '@components/sections/governance/governance';
@@ -7,14 +8,16 @@ import { FC } from 'react';
 
 export const HomePage: FC = () => {
     return (
-        <div className="flex flex-col gap-10">
-            <CTASection />
-            <div className="flex flex-col gap-24 sm:gap-48">
-                <AboutSection />
-                <UsageSection />
-                <GovernanceSection />
-                <HistorySection />
+        <Layout>
+            <div className="flex flex-col gap-10">
+                <CTASection />
+                <div className="flex flex-col gap-24 sm:gap-48">
+                    <AboutSection />
+                    <UsageSection />
+                    <GovernanceSection />
+                    <HistorySection />
+                </div>
             </div>
-        </div>
+        </Layout>
     );
 };

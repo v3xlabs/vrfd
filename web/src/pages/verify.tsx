@@ -1,5 +1,6 @@
 import tempImage from '@assets/temp-image.gif';
 import Container from '@components/Container';
+import { Layout } from '@components/Layout';
 import { CTASection } from '@components/sections/cta/cta';
 import { FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -17,11 +18,7 @@ export const VerifyPage: FC = () => {
     const name = addEnsIfNot(searchParameters.get('name'));
 
     return (
-        <div
-            className="flex flex-col
-            w-full min-h-screen
-            bg-grey1"
-        >
+        <Layout>
             {searchParameters.get('name') ? (
                 <>
                     <CTASection initialInputValue={name} />
@@ -45,17 +42,42 @@ export const VerifyPage: FC = () => {
                         <div className="px-10 py-7 border-2 w-full flex flex-col items-start rounded-lg">
                             <h4 className="text-2xl font-semibold">Info</h4>
 
-                            <table className="table-auto">
-                                <tbody>
-                                    <tr>
-                                        <th>lol</th>
-                                        <th>lol</th>
-                                    </tr>
-                                    <tr>
-                                        <th>lol</th>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div className="flex flex-col w-full">
+                                <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                    <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                                        <div className="overflow-hidden">
+                                            <table className="min-w-full">
+                                                <thead className="border-b text-left">
+                                                    <tr>
+                                                        <th
+                                                            scope="col"
+                                                            className="text-sm font-medium text-gray-900 px-6 py-4"
+                                                        >
+                                                            Name
+                                                        </th>
+                                                        <th
+                                                            scope="col"
+                                                            className="text-sm font-medium text-gray-900 px-6 py-4"
+                                                        >
+                                                            Value
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody className="text-left">
+                                                    <tr className="bg-white border-b">
+                                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                            Verified
+                                                        </td>
+                                                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                            Jacob
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </Container>
                 </>
@@ -70,6 +92,6 @@ export const VerifyPage: FC = () => {
                     </Container>
                 </>
             )}
-        </div>
+        </Layout>
     );
 };
