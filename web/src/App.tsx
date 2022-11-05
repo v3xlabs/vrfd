@@ -18,16 +18,12 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Root />,
+        errorElement: <NotFoundPage />,
         // loader: rootLoader,
         children: [
             {
                 path: '/',
                 element: <HomePage />,
-                // loader: teamLoader,
-            },
-            {
-                path: '*',
-                element: <NotFoundPage />,
                 // loader: teamLoader,
             },
         ],

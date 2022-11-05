@@ -1,24 +1,31 @@
-import { CtaWaved } from '@components/CtaWaved';
+import { Footer } from '@components/sections/footer/footer';
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 export const NotFoundPage: FC = () => {
     return (
         <div
-            className="flex flex-col
+            className="flex flex-col justify-center items-center
             w-full min-h-screen
             bg-grey1"
         >
-            <CtaWaved>
-                <div className="flex flex-col items-center gap-4 justify-center h-full">
-                    <h1 className="text-white text-5xl font-bold">Not found</h1>
-                    <a
-                        className="text-white underline text-2xl font-bold"
-                        href="/"
-                    >
-                        Go to home
-                    </a>
+            <div
+                className="text-5xl font-bold text-transparent
+            bg-clip-text bg-ens-gradient-primary
+            h-full mt-auto p-3"
+            >
+                Page not found
+            </div>
+            <div className="text-xl font-semibold">
+                The page you are looking for does not exist.
+            </div>
+            <Link to={'/'}>
+                <div className="text-xl font-semibold text-blue hover:brightness-75">
+                    Go back to home page
                 </div>
-            </CtaWaved>
+            </Link>
+
+            <Footer />
         </div>
     );
 };
