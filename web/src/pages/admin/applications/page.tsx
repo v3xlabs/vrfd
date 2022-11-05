@@ -8,22 +8,23 @@ import {
     Clock,
     XCircle,
 } from 'react-feather';
+import { useNavigate } from 'react-router';
 
-const psuedoData = [
-    {
-        name: 'robiot.eth',
+const psuedoData = {
+    'robiot.eth': {
         createdAt: '2022/06/21',
         // eslint-disable-next-line sonarjs/no-duplicate-string
         status: 'Awaiting Approval',
     },
-    {
-        name: 'luc.computer',
+    'luc.computer': {
         createdAt: '2022/01/20',
         status: 'Awaiting Approval',
     },
-];
+};
 
 export const ApplicationPage = () => {
+    const nav = useNavigate();
+
     return (
         <AdminLayout activePage="applications">
             <Container noPadding>
@@ -107,24 +108,31 @@ export const ApplicationPage = () => {
                                                 </tr>
                                             </thead>
                                             <tbody className="text-left">
-                                                {psuedoData.map(
+                                                {Object.entries(psuedoData).map(
                                                     (item, index) => {
                                                         return (
                                                             <tr
                                                                 key={`admin_info_row_${index}`}
-                                                                className="bg-white border-b"
+                                                                className="bg-white cursor-pointer hover:bg-gray-100 border-b"
+                                                                onClick={() => {
+                                                                    nav(
+                                                                        `/admin/applications/${item[0]}`
+                                                                    );
+                                                                }}
                                                             >
                                                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                                                    {item.name}
+                                                                    {item[0]}
                                                                 </td>
                                                                 <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                                     {
-                                                                        item.createdAt
+                                                                        item[1]
+                                                                            .createdAt
                                                                     }
                                                                 </td>
                                                                 <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                                     {
-                                                                        item.status
+                                                                        item[1]
+                                                                            .status
                                                                     }
                                                                 </td>
                                                             </tr>
