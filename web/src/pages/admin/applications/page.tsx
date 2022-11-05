@@ -22,6 +22,19 @@ const psuedoData = {
     },
 };
 
+const psuedoFields = {
+    'robiot.eth': {
+        twitter: 'notrobiot',
+        telegram: 'robi0t',
+        legalName: 'Elliot',
+    },
+    'luc.computer': {
+        twitter: 'LucemansNL',
+        telegram: 'lucemans',
+        legalName: 'Luc',
+    },
+};
+
 export const ApplicationPage = () => {
     const nav = useNavigate();
 
@@ -116,7 +129,9 @@ export const ApplicationPage = () => {
                                                                 className="bg-white cursor-pointer hover:bg-gray-100 border-b"
                                                                 onClick={() => {
                                                                     nav(
-                                                                        `/admin/applications/${item[0]}`
+                                                                        `/admin/applications/${encodeURI(
+                                                                            item[0]
+                                                                        )}`
                                                                     );
                                                                 }}
                                                             >
