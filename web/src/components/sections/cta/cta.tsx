@@ -53,13 +53,31 @@ export const CTASection: FC<{ initialInputValue?: string }> = ({
                         className="flex items-center gap-2 mt-2
                     text-center text-white"
                     >
-                        <img src={ensIcon} alt="Ens Icon" className="w-10" />
-                        <span className="text-base font-semibold">X</span>
-                        <img
-                            src={v3xLabsIcon}
-                            alt="V3X Labs Icon"
-                            className="w-10"
-                        />
+                        <a
+                            href="https://ens.domains"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <img
+                                src={ensIcon}
+                                alt="Ens Icon"
+                                className="w-10"
+                            />
+                        </a>
+                        <a href="https://og.ax">
+                            <span className="text-base font-semibold">X</span>
+                        </a>
+                        <a
+                            href="https://github.com/v3xlabs"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <img
+                                src={v3xLabsIcon}
+                                alt="V3X Labs Icon"
+                                className="w-10"
+                            />
+                        </a>
                     </div>
                 </div>
             </Container>
