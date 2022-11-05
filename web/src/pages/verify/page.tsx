@@ -66,7 +66,7 @@ const Profile: FC<{ name: string; address: FetchEnsAddressResult }> = ({
                     }
                 >
                     <InfoCardContent
-                        data={{ verified: true, verifiedAt: '2022/12/24' }}
+                        data={{ verified: false, verifiedAt: '2022/12/24' }}
                     />
                 </Card>
             )}

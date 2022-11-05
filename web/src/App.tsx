@@ -6,6 +6,7 @@ import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
 import { publicProvider } from 'wagmi/providers/public';
 
 import { NotFoundPage } from './pages/404';
+import { AdminPage } from './pages/admin/page';
 import { HomePage } from './pages/home';
 import { VerifyPage } from './pages/verify/page';
 
@@ -32,6 +33,11 @@ const router = createBrowserRouter([
             {
                 path: '/verify',
                 element: <VerifyPage />,
+                // loader: teamLoader,
+            },
+            {
+                path: '/admin',
+                element: <AdminPage />,
                 // loader: teamLoader,
             },
         ],
