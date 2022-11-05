@@ -4,16 +4,22 @@ import { FC, ReactNode } from 'react';
 const Container: FC<{
     children: ReactNode;
     className?: string;
-}> = ({ children, className }) => {
+    noPadding?: boolean;
+}> = (properties) => {
     return (
-        <div className="h-full flex w-full px-4">
+        <div
+            className={cx(
+                'h-full flex w-full',
+                !properties.noPadding && 'px-4'
+            )}
+        >
             <div
                 className={cx(
                     'w-full max-w-2xl mx-auto text-center flex flex-col items-center gap-6',
-                    className
+                    properties.className
                 )}
             >
-                {children}
+                {properties.children}
             </div>
         </div>
     );

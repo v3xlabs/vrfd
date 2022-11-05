@@ -9,7 +9,7 @@ export const AdminLayout: FC<{ children: ReactNode; activePage: PagesType }> = (
         <>
             <div className="flex w-full flex-col md:flex-row min-h-screen bg-grey1">
                 <AdminNavbar active={properties.activePage} />
-                <div className="p-8 w-full">{properties.children}</div>
+                <div className="p-4 md:p-8 w-full">{properties.children}</div>
             </div>
         </>
     );
