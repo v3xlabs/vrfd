@@ -97,7 +97,7 @@ export const ApplyCardContent: FC<{ address: string; name: string }> = (
                 <p className="text-base">
                     I acknowledge applying for verification on this adress:
                 </p>
-                <p className="text-sm text-grey2">
+                <p className="text-sm text-grey2 break-all">
                     {properties.address} ({properties.name})
                 </p>
             </div>
