@@ -10,7 +10,7 @@ export const Card: FC<{
 }> = (properties) => {
     return (
         <ThorinCard className="w-full">
-            <div className="px-6 py-7 flex flex-col w-full items-start">
+            <div className="md:px-6 py-2 md:py-7 flex flex-col w-full items-start">
                 {properties.backPressed !== undefined && (
                     <div className="flex items-center gap-4 mb-5">
                         <button
