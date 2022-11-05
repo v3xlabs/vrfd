@@ -1,5 +1,5 @@
 import { FC } from 'react';
 
-export const OpenSourceSection: FC = () => {
+export const CodeSection: FC = () => {
     return <div>please build</div>;
 };

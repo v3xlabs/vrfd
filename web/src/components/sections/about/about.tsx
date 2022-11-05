@@ -6,7 +6,7 @@ import Container from '../../Container';
 
 export const AboutSection: FC = () => {
     return (
-        <Container>
+        <Container className="lg:py-10">
             <SectionHeader>About</SectionHeader>
             <p className="max-w-lg">
                 vrfd.eth is a decentralized on-chain blue checkmark system that

@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react';
 
 export const CtaWaved: FC<{ children: ReactNode }> = (properties) => {
     return (
-        <div className="w-full h-[100vh] bg-ens-gradient-primary relative">
+        <div className="w-full h-[90vh] bg-ens-gradient-primary relative">
             <svg
                 className="h-20 md:h-40 xl:h-60 absolute bottom-0 left-0 w-full"
                 width="100%"
@@ -19,7 +19,7 @@ export const CtaWaved: FC<{ children: ReactNode }> = (properties) => {
                 />
             </svg>
 
-            {properties.children}
+            <div className="h-[90%]">{properties.children}</div>
         </div>
     );
 };
