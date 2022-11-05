@@ -41,7 +41,7 @@ export const VerifyPage: FC = () => {
 
                         {/* Border not working, box shadow not working????, todo: add box */}
                         <div className="border-2 w-full flex flex-col rounded-lg">
-                            <div className="px-10 py-7 flex flex-col w-full items-start">
+                            <div className="px-6 md:px-10 py-7 flex flex-col w-full items-start">
                                 <h4 className="text-2xl font-semibold">Info</h4>
 
                                 <div className="flex flex-col w-full">
