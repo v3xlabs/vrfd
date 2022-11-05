@@ -2,9 +2,9 @@ import { FC, ReactNode } from 'react';
 
 export const CtaWaved: FC<{ children: ReactNode }> = (properties) => {
     return (
-        <div className="w-full h-[85vh] bg-ens-gradient-primary relative">
+        <div className="w-full h-[100vh] bg-ens-gradient-primary relative">
             <svg
-                className="h-20 xl:h-60 absolute bottom-0 left-0 w-full"
+                className="h-20 md:h-40 xl:h-60 absolute bottom-0 left-0 w-full"
                 width="100%"
                 viewBox="0 0 1920 346"
                 fill="none"
