@@ -49,8 +49,7 @@ export const AdminNavbar: FC<{
             </nav>
             <nav
                 className={cx(
-                    mobileNavActive &&
-                        'absolute top-0 md:static h-screen !block',
+                    mobileNavActive && 'fixed top-0 md:static h-screen !block',
                     'hidden md:block w-[18rem] min-w-[18rem] bg-neutral-900 text-white pl-4 pr-5 py-5'
                 )}
             >
