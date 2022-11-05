@@ -2,6 +2,8 @@ import { lightTheme, ThorinGlobalStyles } from '@ensdomains/thorin';
 import { FC } from 'react';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
+import { publicProvider } from 'wagmi/providers/public';
 
 import { NotFoundPage } from './pages/404';
 import { HomePage } from './pages/home';
@@ -36,13 +38,26 @@ const router = createBrowserRouter([
     },
 ]);
 
+const { chains, provider, webSocketProvider } = configureChains(
+    [chain.mainnet, chain.polygon],
+    [publicProvider()]
+);
+
+const client = createClient({
+    autoConnect: true,
+    provider,
+    webSocketProvider,
+});
+
 function App() {
     return (
         <div>
-            <ThemeProvider theme={lightTheme}>
-                <ThorinGlobalStyles />
-                <RouterProvider router={router} />
-            </ThemeProvider>
+            <WagmiConfig client={client}>
+                <ThemeProvider theme={lightTheme}>
+                    <ThorinGlobalStyles />
+                    <RouterProvider router={router} />
+                </ThemeProvider>
+            </WagmiConfig>
         </div>
     );
 }
