@@ -12,7 +12,7 @@ export const CTASection: FC<{ initialInputValue?: string }> = ({
     return (
         <CtaWaved>
             <Container>
-                <div className="flex justify-center items-center h-full w-full flex-col gap-3">
+                <div className="flex flex-col gap-3 justify-center items-center h-full w-full">
                     <h1 className="text-white font-bold text-6xl">vrfd.eth</h1>
                     <p className="text-white">Decentralized Blue Checkmark</p>
 
@@ -21,7 +21,7 @@ export const CTASection: FC<{ initialInputValue?: string }> = ({
                         action="/verify/"
                         className="w-full flex justify-center"
                     >
-                        <div className="flex rounded-xl w-full max-w-lg items-stretch relative">
+                        <div className="flex items-stretch rounded-xl w-full max-w-lg relative">
                             <div className="pb-2 w-full">
                                 <Input
                                     label=""

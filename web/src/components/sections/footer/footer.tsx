@@ -6,7 +6,8 @@ export const Footer: FC<{ noTopMargin?: boolean }> = (properties) => {
     return (
         <footer
             className={cx(
-                'w-full flex bg-white justify-center items-center p-6 border-2 border-solid border-t-neutral-300 border-r-0 border-l-0 border-b-0',
+                'w-full flex justify-center items-center bg-white p-6',
+                'border-2 border-solid border-t-neutral-300 border-r-0 border-l-0 border-b-0',
                 !properties.noTopMargin && 'mt-44'
             )}
         >
