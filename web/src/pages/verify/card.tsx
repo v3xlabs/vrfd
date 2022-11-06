@@ -248,8 +248,21 @@ export const VerifyInformationCard: FC<{
     };
 
     const onSubmit: SubmitHandler<FormDataFieldsData> = async (data) => {
+        const datas: Partial<FormDataFieldsData> = {};
+
+        for (const key of Object.keys(
+            defaultData
+        ) as (keyof FormDataFieldsData)[]) {
+            if (defaultData[key] && defaultData[key].trim() != '') {
+                datas[key] = defaultData[key];
+            }
+        }
         const signed_data_request = await signMessageAsync({
-            message: JSON.stringify(message),
+            message: JSON.stringify({
+                type: 'vrfd-verification',
+                name,
+                data: datas,
+            }),
         });
 
         if (signed_data_request) {
