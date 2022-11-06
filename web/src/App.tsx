@@ -8,6 +8,8 @@ import { publicProvider } from 'wagmi/providers/public';
 import { NotFoundPage } from './pages/404';
 import { AdminNameDetailsPage } from './pages/admin/applications/[name]/page';
 import { ApplicationPage } from './pages/admin/applications/page';
+import { AdminNameDisputeDetailsPage } from './pages/admin/disputes/[name]/page';
+import { DisputesPage } from './pages/admin/disputes/page';
 import { AdminPage } from './pages/admin/page';
 import { HomePage } from './pages/home';
 import { VerifyPage } from './pages/verify/page';
@@ -58,6 +60,21 @@ const router = createBrowserRouter([
                             {
                                 path: '/admin/applications/:name',
                                 element: <AdminNameDetailsPage />,
+                            },
+                        ],
+                    },
+                    {
+                        path: '/admin/disputes',
+                        element: <Root />,
+
+                        children: [
+                            {
+                                path: '/admin/disputes',
+                                element: <DisputesPage />,
+                            },
+                            {
+                                path: '/admin/disputes/:name',
+                                element: <AdminNameDisputeDetailsPage />,
                             },
                         ],
                     },
