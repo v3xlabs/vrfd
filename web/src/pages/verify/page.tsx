@@ -1,13 +1,12 @@
 import Container from '@components/Container';
 import { Layout } from '@components/Layout';
 import { CTASection } from '@components/sections/cta/cta';
-import { Button } from '@ensdomains/thorin';
 import { FetchEnsAddressResult } from '@wagmi/core';
 import { FC, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useEnsAddress } from 'wagmi';
 
-import { ApplyCardContent, Card, InfoCard, VerifiedData } from './card';
+import { ApplyCard, Card, InfoCard, VerifiedData } from './card';
 
 const addEnsIfNot = (input: string | null) =>
     input ? (input.includes('.') ? input : `${input}.eth`) : undefined;
@@ -25,7 +24,7 @@ const Profile: FC<{ name: string; address: FetchEnsAddressResult }> = ({
     });
 
     const verifiedData: VerifiedData = {
-        verified: data !== address,
+        verified: data === address,
         vrfdAddress: data,
         fields: [
             {
@@ -71,17 +70,12 @@ const Profile: FC<{ name: string; address: FetchEnsAddressResult }> = ({
             )}
 
             {cardToShow == 'apply' && (
-                <Card
+                <ApplyCard
                     name={name}
                     address={address}
-                    backPressed={() => {
-                        setCardToShow('info');
-                    }}
+                    onBack={() => setCardToShow('info')}
                     verifiedData={verifiedData}
-                >
-                    <ApplyCardContent address={address!} name={name} />
-                    <Button className="!rounded-lg">Submit</Button>
-                </Card>
+                />
             )}
 
             {cardToShow == 'dispute' && (

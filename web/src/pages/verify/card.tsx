@@ -134,7 +134,7 @@ export const InfoCard: FC<{
                             className="!rounded-lg sm:!w-1/2 sm:mt-0 ml-auto"
                             onClick={onApply}
                         >
-                            Verify this domain
+                            Verify this name
                         </Button>
                     </>
                 )}
@@ -143,23 +143,47 @@ export const InfoCard: FC<{
     );
 };
 
-export const ApplyCardContent: FC<{ address: string; name: string }> = (
-    properties
-) => {
-    return (
-        <div className="flex flex-col text-left gap-6">
-            <div className="flex flex-col gap-2">
-                <p className="text-base">
-                    I acknowledge applying for verification on this adress:
-                </p>
-                <p className="text-sm text-grey2 break-all">
-                    {properties.address} ({properties.name})
-                </p>
-            </div>
+export const ApplyCard: FC<{
+    name: string;
+    address: FetchEnsAddressResult;
+    verifiedData: VerifiedData;
 
-            <Input label="Twitter" />
-            <Input label="Telegram" />
-            <Input label="Legal Name" />
-        </div>
+    onBack: () => void;
+}> = ({ name, address, onBack, verifiedData }) => {
+    return (
+        <Card
+            name={name}
+            address={address}
+            verifiedData={verifiedData}
+            backPressed={onBack}
+        >
+            <div className="flex flex-col gap-4 mt-4">
+                {/* Legal Name, Twitter, Telegram, Website, Discord, Trademark, Other */}
+                <Input label="Legal Name" placeholder="Enter your legal name" />
+                <Input
+                    label="Twitter"
+                    placeholder="Enter your Twitter handle"
+                />
+                <Input
+                    label="Telegram"
+                    placeholder="Enter your Telegram handle"
+                />
+                <Input label="Website" placeholder="Enter your website" />
+                <Input
+                    label="Discord"
+                    placeholder="Enter your Discord handle"
+                />
+                <Input label="Trademark" placeholder="Enter your trademark" />
+                <Input label="Other" placeholder="Enter other information" />
+
+                <Button
+                    className="!rounded-lg sm:!w-1/2 sm:mt-0 ml-auto"
+                    onClick={onBack}
+                    type="submit"
+                >
+                    Sign and submit
+                </Button>
+            </div>
+        </Card>
     );
 };
