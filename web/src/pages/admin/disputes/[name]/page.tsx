@@ -8,14 +8,9 @@ import { useEnsAddress, useEnsAvatar } from 'wagmi';
 
 import { DisputesContainer } from '../disputesContainer';
 
-const psuedoFields: Record<
-    string,
-    { twitter: string; telegram: string; legalName: string }
-> = {
+const psuedoFields: Record<string, { reason: string }> = {
     'helgesson.eth': {
-        twitter: 'fakeHelgesson_',
-        telegram: 'notHelgesson',
-        legalName: 'Jacob Helgesson',
+        reason: 'I am the fake Jacob Helgesson and I want to steal his name',
     },
 };
 
@@ -102,28 +97,11 @@ export const AdminNameDisputeDetailsPage: FC = () => {
 
                         <div className="flex flex-col gap-10">
                             <div className="flex flex-col gap-6">
-                                {psuedoFields[name!].twitter !== undefined && (
+                                {psuedoFields[name!].reason !== undefined && (
                                     <Input
                                         readOnly
-                                        label="Twitter"
-                                        value={psuedoFields[name!].twitter}
-                                    />
-                                )}
-
-                                {psuedoFields[name!].telegram !== undefined && (
-                                    <Input
-                                        readOnly
-                                        label="Telegram"
-                                        value={psuedoFields[name!].telegram}
-                                    />
-                                )}
-
-                                {psuedoFields[name!].legalName !==
-                                    undefined && (
-                                    <Input
-                                        readOnly
-                                        label="Legal Name"
-                                        value={psuedoFields[name!].legalName}
+                                        label="Reason"
+                                        value={psuedoFields[name!].reason}
                                     />
                                 )}
                             </div>

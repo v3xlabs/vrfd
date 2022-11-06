@@ -10,8 +10,16 @@ import { useNavigate } from 'react-router';
 
 import { DisputesContainer } from './disputesContainer';
 
-const psuedoData = {
+const psuedoData: Record<
+    string,
+    {
+        disputer: string;
+        createdAt: string;
+        status: string;
+    }
+> = {
     'helgesson.eth': {
+        disputer: 'nick.eth',
         createdAt: '2022/01/20',
         status: 'Awaiting Review',
     },
@@ -38,7 +46,7 @@ export const DisputesPage = () => {
                         options={[
                             {
                                 value: 'awaiting',
-                                label: 'Awaiting Approval',
+                                label: 'Awaiting Review',
                                 prefix: <Clock />,
                             },
                             {
@@ -83,7 +91,14 @@ export const DisputesPage = () => {
                                                 scope="col"
                                                 className="text-sm font-medium text-gray-900 px-6 py-4"
                                             >
-                                                Name
+                                                Disputed Name
+                                            </th>
+
+                                            <th
+                                                scope="col"
+                                                className="text-sm font-medium text-gray-900 px-6 py-4"
+                                            >
+                                                Disputer
                                             </th>
 
                                             <th
@@ -117,6 +132,9 @@ export const DisputesPage = () => {
                                                     >
                                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                                             {item[0]}
+                                                        </td>
+                                                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                            {item[1].disputer}
                                                         </td>
                                                         <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                             {item[1].createdAt}
