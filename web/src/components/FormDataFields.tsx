@@ -22,6 +22,7 @@ export const FormDataFields: FC<{
     return (
         <form className="flex flex-col gap-4 mt-4" onSubmit={onSubmit}>
             {/* Legal Name, Twitter, Telegram, Website, Discord, Trademark, Other */}
+            {JSON.stringify(hideThese)}
             {!hideThese?.legalName && (
                 <Input
                     label="Legal Name"

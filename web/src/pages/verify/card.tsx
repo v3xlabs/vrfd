@@ -163,9 +163,7 @@ export const ApplyCard: FC<{
         mode: 'all',
         defaultValues: defaultData,
         resolver: async (values) => {
-            setNofield(
-                !Object.values(values).some((v) => v !== '' && v !== ' ')
-            );
+            setNofield(!Object.values(values).some((v) => v.trim() !== ''));
 
             return {
                 values,

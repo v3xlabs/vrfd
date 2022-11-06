@@ -1,17 +1,16 @@
+import { FormDataFields, FormDataFieldsData } from '@components/FormDataFields';
 import { Modal } from '@components/Modal';
-import { Button, Card, Input, Skeleton } from '@ensdomains/thorin';
+import { Button, Card, Skeleton } from '@ensdomains/thorin';
 import { cx } from '@utils/cx';
 import { FC, useState } from 'react';
 import { ChevronLeft } from 'react-feather';
+import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router';
 import { useEnsAddress, useEnsAvatar } from 'wagmi';
 
 import { ApplicationsContainer } from '../applicationsContainer';
 
-const psuedoFields: Record<
-    string,
-    { twitter: string; telegram: string; legalName: string }
-> = {
+const psuedoFields: Record<string, Partial<FormDataFieldsData>> = {
     'robiot.eth': {
         twitter: 'notrobiot',
         telegram: 'robi0t',
@@ -21,6 +20,12 @@ const psuedoFields: Record<
         twitter: 'LucemansNL',
         telegram: 'lucemans',
         legalName: 'Luc',
+    },
+    'vitalik.eth': {
+        twitter: 'vitalikbuterin',
+        telegram: 'vitalik',
+        legalName: 'Vitalik Buterin',
+        website: 'vitalik.eth',
     },
 };
 
@@ -43,6 +48,10 @@ export const AdminNameDetailsPage: FC = () => {
         isError,
     } = useEnsAddress({
         name,
+    });
+
+    const { register } = useForm<FormDataFieldsData>({
+        defaultValues: psuedoFields[name!],
     });
 
     const nav = useNavigate();
@@ -106,75 +115,64 @@ export const AdminNameDetailsPage: FC = () => {
                         )}
 
                         <div className="flex flex-col gap-10">
-                            <div className="flex flex-col gap-6">
-                                {psuedoFields[name!].twitter !== undefined && (
-                                    <Input
-                                        readOnly
-                                        label="Twitter"
-                                        value={psuedoFields[name!].twitter}
-                                    />
-                                )}
-
-                                {psuedoFields[name!].telegram !== undefined && (
-                                    <Input
-                                        readOnly
-                                        label="Telegram"
-                                        value={psuedoFields[name!].telegram}
-                                    />
-                                )}
-
-                                {psuedoFields[name!].legalName !==
-                                    undefined && (
-                                    <Input
-                                        readOnly
-                                        label="Legal Name"
-                                        value={psuedoFields[name!].legalName}
-                                    />
-                                )}
-                            </div>
-
-                            <div className="flex flex-col gap-5">
-                                <Button
-                                    className="!bg-green"
-                                    onClick={() => {
-                                        setModalData({
-                                            title: 'Approve',
-                                            type: 'approve',
-                                        });
-                                        setModalOpen(true);
-                                    }}
-                                >
-                                    Approve
-                                </Button>
-                                <div className="flex flex-col md:flex-row gap-5">
+                            <FormDataFields
+                                readonly
+                                register={register}
+                                onSubmit={() => {}}
+                                hideThese={
+                                    Object.fromEntries(
+                                        Object.entries(psuedoFields[name!]).map(
+                                            (value) => [
+                                                value[0],
+                                                value[1].trim() == '',
+                                            ]
+                                        )
+                                    ) as any
+                                }
+                            >
+                                <div className="flex flex-col gap-5">
                                     <Button
-                                        className="!bg-red"
+                                        className="!bg-green"
                                         onClick={() => {
                                             setModalData({
-                                                title: 'Deny as Incorrect',
-                                                type: 'deny',
-                                                denyAs: 'Incorrect',
+                                                title: 'Approve',
+                                                type: 'approve',
                                             });
                                             setModalOpen(true);
                                         }}
                                     >
-                                        Deny as Incorrect
+                                        Approve
                                     </Button>
-                                    <Button
-                                        className="!bg-red"
-                                        onClick={() => {
-                                            setModalData({
-                                                title: 'Deny as Typo',
-                                                type: 'deny',
-                                                denyAs: 'Typo',
-                                            });
-                                            setModalOpen(true);
-                                        }}
-                                    >
-                                        Deny as Typo
-                                    </Button>
+                                    <div className="flex flex-col md:flex-row gap-5">
+                                        <Button
+                                            className="!bg-red"
+                                            onClick={() => {
+                                                setModalData({
+                                                    title: 'Deny as Incorrect',
+                                                    type: 'deny',
+                                                    denyAs: 'Incorrect',
+                                                });
+                                                setModalOpen(true);
+                                            }}
+                                        >
+                                            Deny as Incorrect
+                                        </Button>
+                                        <Button
+                                            className="!bg-red"
+                                            onClick={() => {
+                                                setModalData({
+                                                    title: 'Deny as Typo',
+                                                    type: 'deny',
+                                                    denyAs: 'Typo',
+                                                });
+                                                setModalOpen(true);
+                                            }}
+                                        >
+                                            Deny as Typo
+                                        </Button>
+                                    </div>
                                 </div>
-                            </div>
+                            </FormDataFields>
 
                             {modalData !== undefined && modalOpen && (
                                 <Modal label={modalData.title} open>

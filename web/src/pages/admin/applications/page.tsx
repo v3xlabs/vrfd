@@ -20,6 +20,10 @@ const psuedoData = {
         createdAt: '2022/01/20',
         status: 'Awaiting Approval',
     },
+    'vitalik.eth': {
+        createdAt: '2022/01/11',
+        status: 'Awaiting Approval',
+    },
 };
 
 export const ApplicationPage = () => {
