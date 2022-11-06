@@ -217,11 +217,12 @@ export const VerifyInformationCard: FC<{
     verifiedData: VerifiedData;
     defaultData: FormDataFieldsData;
     onBack: () => void;
-}> = ({ name, address, onBack, verifiedData, defaultData }) => {
+    onSuccess: () => void;
+}> = ({ name, address, onBack, onSuccess, verifiedData, defaultData }) => {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isSubmitting },
     } = useForm<FormDataFieldsData>({ defaultValues: defaultData });
 
     const { data: signedData, signMessageAsync } = useSignMessage();
@@ -236,9 +237,17 @@ export const VerifyInformationCard: FC<{
             }
         }
 
-        const signed_key_request = await signMessageAsync({
-            message: JSON.stringify(ndata),
+        const signed_data_request = await signMessageAsync({
+            message: JSON.stringify({
+                type: 'vrfd-verification',
+                name,
+                data: ndata,
+            }),
         });
+
+        if (signed_data_request) {
+            onSuccess();
+        }
     };
 
     return (
@@ -289,6 +298,8 @@ export const VerifyInformationCard: FC<{
                         Back
                     </Button>
                     <Button
+                        loading={isSubmitting}
+                        disabled={isSubmitting}
                         className="!rounded-lg !w-1/2 sm:mt-0"
                         type="submit"
                     >
@@ -296,6 +307,30 @@ export const VerifyInformationCard: FC<{
                     </Button>
                 </div>
             </FormDataFields>
+        </Card>
+    );
+};
+
+export const SuccessCard: FC<{
+    name: string;
+    address: FetchEnsAddressResult;
+    verifiedData: VerifiedData;
+
+    onBack: () => void;
+}> = ({ name, address, verifiedData, onBack }) => {
+    return (
+        <Card name={name} address={address} verifiedData={verifiedData}>
+            <div className="flex flex-col items-center justify-center py-10 gap-2">
+                <h1 className="text-4xl font-medium">Success</h1>
+                <p className="text-base">
+                    You have successfully filed an verification application for{' '}
+                    {name}.{' '}
+                </p>
+
+                <Button className="!w-52 mt-4" onClick={onBack}>
+                    Go to Info
+                </Button>
+            </div>
         </Card>
     );
 };

@@ -12,6 +12,7 @@ import {
     ApplyCard,
     Card,
     InfoCard,
+    SuccessCard,
     VerifiedData,
     VerifyInformationCard,
 } from './card';
@@ -97,7 +98,13 @@ const Profile: FC<{ name: string; address: FetchEnsAddressResult }> = ({
     address,
 }) => {
     const [cardToShow, setCardToShow] = useState<
-        'apply' | 'verifyInfo' | 'info' | 'dispute'
+        // Apply flow
+        | 'apply'
+        | 'verifyInfo'
+        | 'success'
+        // Other
+        | 'info'
+        | 'dispute'
     >('info');
 
     const { data, isLoading, isError } = useEnsAddress({
@@ -114,13 +121,6 @@ const Profile: FC<{ name: string; address: FetchEnsAddressResult }> = ({
 
     return (
         <>
-            {/* <div className="flex justify-center items-center flex-col gap-5">
-                <div className="flex flex-col md:flex-row gap-7 md:gap-14 items-center">
-                    <h2 className="text-4xl">{name}</h2>
-                </div>
-                <span className="text-md break-all text-grey2">{address}</span>
-            </div> */}
-
             {cardToShow == 'info' && (
                 <InfoCard
                     name={name}
@@ -147,11 +147,27 @@ const Profile: FC<{ name: string; address: FetchEnsAddressResult }> = ({
 
             {cardToShow == 'verifyInfo' && formData !== undefined && (
                 <VerifyInformationCard
+                    onSuccess={() => {
+                        setCardToShow('success');
+                    }}
                     name={name}
                     address={address}
                     onBack={() => setCardToShow('apply')}
                     verifiedData={verifiedData}
                     defaultData={formData}
+                />
+            )}
+
+            {cardToShow == 'success' && (
+                <SuccessCard
+                    name={name}
+                    address={address}
+                    onBack={() => {
+                        // eslint-disable-next-line unicorn/no-useless-undefined
+                        setFormData(undefined);
+                        setCardToShow('info');
+                    }}
+                    verifiedData={verifiedData}
                 />
             )}
 
