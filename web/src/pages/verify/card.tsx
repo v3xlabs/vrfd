@@ -1,4 +1,5 @@
 import checkMark from '@assets/check.svg';
+import filecoinImage from '@assets/filecoin.png';
 import {
     Button,
     Card as ThorinCard,
@@ -230,22 +231,25 @@ export const VerifyInformationCard: FC<{
 
     const { data: signedData, signMessageAsync } = useSignMessage();
 
-    // eslint-disable-next-line unicorn/consistent-function-scoping
-    const onSubmit: SubmitHandler<FormDataFieldsData> = async (data) => {
-        const ndata: Partial<FormDataFieldsData> = {};
+    const data: Partial<FormDataFieldsData> = {};
 
-        for (const key of Object.keys(data) as (keyof FormDataFieldsData)[]) {
-            if (data[key] && data[key].trim() != '') {
-                ndata[key] = data[key];
-            }
+    for (const key of Object.keys(
+        defaultData
+    ) as (keyof FormDataFieldsData)[]) {
+        if (defaultData[key] && defaultData[key].trim() != '') {
+            data[key] = defaultData[key];
         }
+    }
 
+    const message = {
+        type: 'vrfd-verification',
+        name,
+        data,
+    };
+
+    const onSubmit: SubmitHandler<FormDataFieldsData> = async (data) => {
         const signed_data_request = await signMessageAsync({
-            message: JSON.stringify({
-                type: 'vrfd-verification',
-                name,
-                data: ndata,
-            }),
+            message: JSON.stringify(message),
         });
 
         if (signed_data_request) {
@@ -263,53 +267,45 @@ export const VerifyInformationCard: FC<{
             <div className="mt-3 mb-7 flex flex-col gap-2 text-left">
                 <p className="text-base">
                     Verify the provided information. If everything looks good,
-                    press the Submit button.
+                    press the Sign & Upload button.
                 </p>
             </div>
-            <FormDataFields
-                readonly
-                register={register as any}
-                onSubmit={handleSubmit(onSubmit)}
-                hideThese={
-                    Object.fromEntries(
-                        Object.entries(defaultData).map((value) => [
-                            value[0],
-                            value[1].trim() == '',
-                        ])
-                    ) as any
-                }
-            >
-                <div className="text-left">
-                    <p className="text-xs">
-                        Upon clicking submit, you will stake 0.04ETH.
-                    </p>
-                    <p className="text-xs">
-                        If the application gets approved you will{' '}
-                        <span className="font-bold">get the ETH back</span> (-
-                        gas fees), but if the information is incorrect you will{' '}
+
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="flex flex-col gap-5">
+                    <Textarea
+                        label="Message"
+                        readOnly
+                        className="!font-normal"
+                        style={{ minHeight: '200px' }}
+                        value={JSON.stringify(message, undefined, 4)}
+                    />
+
+                    <div className="flex justify-between items-center">
                         <span className="font-bold">
-                            not recieve the ETH back
+                            Calculated Upload Price
                         </span>
-                        .
-                    </p>
+                        <div className="flex gap-4 items-center">
+                            <div className="flex gap-2 items-center">
+                                <span className='font-bold'>0.01</span>
+                                <img
+                                    src={filecoinImage}
+                                    className="h-6"
+                                    alt="Filecoin"
+                                />
+                            </div>
+                            <Button
+                                loading={isSubmitting}
+                                disabled={isSubmitting}
+                                className="!w-40 !rounded-lg"
+                                type="submit"
+                            >
+                                Sign & Upload
+                            </Button>
+                        </div>
+                    </div>
                 </div>
-                <div className="flex w-full gap-5">
-                    <Button
-                        className="!bg-red !rounded-lg !w-1/2 sm:mt-0"
-                        onClick={onBack}
-                    >
-                        Back
-                    </Button>
-                    <Button
-                        loading={isSubmitting}
-                        disabled={isSubmitting}
-                        className="!rounded-lg !w-1/2 sm:mt-0"
-                        type="submit"
-                    >
-                        Submit
-                    </Button>
-                </div>
-            </FormDataFields>
+            </form>
         </Card>
     );
 };
