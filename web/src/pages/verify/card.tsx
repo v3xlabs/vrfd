@@ -8,8 +8,9 @@ import {
 } from '@ensdomains/thorin';
 import { cx } from '@utils/cx';
 import { FetchEnsAddressResult } from '@wagmi/core';
-import { DOMAttributes, FC, ReactNode } from 'react';
+import { DOMAttributes, FC, ReactNode, useState } from 'react';
 import { ChevronLeft } from 'react-feather';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useEnsAvatar } from 'wagmi';
 
 export const Card: FC<{
@@ -154,9 +155,117 @@ type FormData = {
     other: string;
 };
 
-import { SubmitHandler, useForm } from 'react-hook-form';
-
 export const ApplyCard: FC<{
+    name: string;
+    address: FetchEnsAddressResult;
+    verifiedData: VerifiedData;
+    onSubmit: SubmitHandler<FormData>;
+    onBack: () => void;
+}> = ({ name, address, onBack, verifiedData, onSubmit }) => {
+    const [noFields, setNofield] = useState(true);
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<FormData>({
+        reValidateMode: 'onSubmit',
+        mode: 'all',
+        resolver: async (values) => {
+            setNofield(
+                !Object.values(values).some((v) => v !== '' && v !== ' ')
+            );
+
+            return {
+                values,
+                errors: {},
+            };
+        },
+    });
+    // eslint-disable-next-line unicorn/consistent-function-scoping
+
+    return (
+        <Card
+            name={name}
+            address={address}
+            verifiedData={verifiedData}
+            backPressed={onBack}
+        >
+            <div className="mt-3 mb-7 flex flex-col gap-2 text-left">
+                <p className="text-base">
+                    Fill out as many fields as you would like, but at least{' '}
+                    <span className="font-bold">one is required</span>.
+                </p>
+            </div>
+            <form
+                className="flex flex-col gap-4 mt-4"
+                onSubmit={handleSubmit(onSubmit)}
+            >
+                {/* Legal Name, Twitter, Telegram, Website, Discord, Trademark, Other */}
+                <Input
+                    label="Legal Name"
+                    placeholder="Enter your legal name"
+                    {...register('legalName')}
+                />
+                <div className="flex flex-col md:flex-row gap-1 md:gap-2 items-end">
+                    <Input
+                        label="Twitter"
+                        placeholder="Enter your Twitter handle"
+                        {...register('twitter')}
+                    />
+                    <Button className="md:m-1 h-14 md:!w-32">Link</Button>
+                </div>
+                <Input
+                    label="Telegram"
+                    placeholder="Enter your Telegram handle"
+                    {...register('telegram')}
+                />
+                <Input
+                    label="Website"
+                    placeholder="Enter your website"
+                    {...register('website')}
+                />
+                <div className="flex flex-col md:flex-row gap-1 md:gap-2 items-end">
+                    <Input
+                        label="Discord"
+                        placeholder="Enter your Discord handle"
+                        {...register('discord')}
+                    />
+                    <Button className="md:m-1 h-14 md:!w-32">Link</Button>
+                </div>
+                <Input
+                    label="Trademark"
+                    placeholder="Enter your trademark"
+                    {...register('trademark')}
+                />
+                <Textarea
+                    label="Other"
+                    placeholder="Enter other information"
+                    className="h-52"
+                    {...register('other')}
+                />
+
+                {noFields && (
+                    <p className="text-red text-left">
+                        At least one field needs to be filled out.
+                    </p>
+                )}
+
+                <div className="flex items-center justify-center w-full">
+                    <Button
+                        className="!rounded-lg sm:!w-1/2 sm:mt-0"
+                        type="submit"
+                        disabled={noFields}
+                    >
+                        Continue
+                    </Button>
+                </div>
+            </form>
+        </Card>
+    );
+};
+
+export const VerifyInformationCard: FC<{
     name: string;
     address: FetchEnsAddressResult;
     verifiedData: VerifiedData;
@@ -181,8 +290,8 @@ export const ApplyCard: FC<{
         >
             <div className="mt-3 mb-7 flex flex-col gap-2 text-left">
                 <p className="text-base">
-                    Fill out as many fields as you would like, but at least{' '}
-                    <span className="font-bold">one is required</span>.
+                    Verify the provided information. If everything looks good,
+                    press the Submit button.
                 </p>
             </div>
             <form

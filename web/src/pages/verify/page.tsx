@@ -6,7 +6,13 @@ import { FC, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useEnsAddress } from 'wagmi';
 
-import { ApplyCard, Card, InfoCard, VerifiedData } from './card';
+import {
+    ApplyCard,
+    Card,
+    InfoCard,
+    VerifiedData,
+    VerifyInformationCard,
+} from './card';
 
 const addEnsIfNot = (input: string | null) =>
     input ? (input.includes('.') ? input : `${input}.eth`) : undefined;
@@ -15,9 +21,9 @@ const Profile: FC<{ name: string; address: FetchEnsAddressResult }> = ({
     name,
     address,
 }) => {
-    const [cardToShow, setCardToShow] = useState<'apply' | 'info' | 'dispute'>(
-        'info'
-    );
+    const [cardToShow, setCardToShow] = useState<
+        'apply' | 'verifyInfo' | 'info' | 'dispute'
+    >('info');
 
     const { data, isLoading, isError } = useEnsAddress({
         name: name + '.vrfd.eth',
@@ -71,6 +77,18 @@ const Profile: FC<{ name: string; address: FetchEnsAddressResult }> = ({
 
             {cardToShow == 'apply' && (
                 <ApplyCard
+                    name={name}
+                    address={address}
+                    onSubmit={(data) => {
+                        alert(data);
+                    }}
+                    onBack={() => setCardToShow('info')}
+                    verifiedData={verifiedData}
+                />
+            )}
+
+            {cardToShow == 'verifyInfo' && (
+                <VerifyInformationCard
                     name={name}
                     address={address}
                     onBack={() => setCardToShow('info')}
