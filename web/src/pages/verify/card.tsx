@@ -169,6 +169,7 @@ export const ApplyCard: FC<{
         watch,
         formState: { errors },
     } = useForm<FormData>();
+    // eslint-disable-next-line unicorn/consistent-function-scoping
     const onSubmit: SubmitHandler<FormData> = (data) => console.log(data);
 
     return (
@@ -188,11 +189,14 @@ export const ApplyCard: FC<{
                     placeholder="Enter your legal name"
                     {...register('legalName')}
                 />
-                <Input
-                    label="Twitter"
-                    placeholder="Enter your Twitter handle"
-                    {...register('twitter')}
-                />
+                <div className="flex flex-col md:flex-row gap-1 md:gap-2 items-end">
+                    <Input
+                        label="Twitter"
+                        placeholder="Enter your Twitter handle"
+                        {...register('twitter')}
+                    />
+                    <Button className="md:m-1 h-14 md:!w-32">Link</Button>
+                </div>
                 <Input
                     label="Telegram"
                     placeholder="Enter your Telegram handle"
@@ -203,11 +207,14 @@ export const ApplyCard: FC<{
                     placeholder="Enter your website"
                     {...register('website')}
                 />
-                <Input
-                    label="Discord"
-                    placeholder="Enter your Discord handle"
-                    {...register('discord')}
-                />
+                <div className="flex flex-col md:flex-row gap-1 md:gap-2 items-end">
+                    <Input
+                        label="Discord"
+                        placeholder="Enter your Discord handle"
+                        {...register('discord')}
+                    />
+                    <Button className="md:m-1 h-14 md:!w-32">Link</Button>
+                </div>
                 <Input
                     label="Trademark"
                     placeholder="Enter your trademark"
