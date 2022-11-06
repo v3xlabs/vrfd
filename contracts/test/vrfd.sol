@@ -1,24 +1,25 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import "forge-std/Test.sol";
+import "../lib/forge-std/src/Test.sol";
 import "../src/vrfd.sol";
 
 contract CounterTest is Test {
-    vrfd public counter;
+    vrfd public vrfdcontract;
 
     function setUp() public {
-        counter = new vrfd();
-        counter.setNumber(0);
+        vrfdcontract = new vrfd(5);
     }
 
-    function testIncrement() public {
-        counter.increment();
-        assertEq(counter.number(), 1);
+    function testPrice() public {
+        assertEq(vrfdcontract.casePrice(), 5);
+        vrfdcontract.setCasePrice(4);
+        assertEq(vrfdcontract.casePrice(), 4);
     }
 
-    function testSetNumber(uint256 x) public {
-        counter.setNumber(x);
-        assertEq(counter.number(), x);
+    function testOwnershipTransfer() public {
+        assertEq(vrfdcontract.owner(), address(this));
+        vrfdcontract.setOwner(address(0));
+        assertEq(vrfdcontract.owner(), address(0));
     }
 }
