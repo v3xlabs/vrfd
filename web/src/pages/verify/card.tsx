@@ -281,23 +281,25 @@ export const VerifyInformationCard: FC<{
                         value={JSON.stringify(message, undefined, 4)}
                     />
 
-                    <div className="flex justify-between items-center">
-                        <span className="font-bold">
-                            Calculated Upload Price
-                        </span>
-                        <div className="flex gap-4 items-center">
+                    <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
+                        <div className="flex flex-col xs:flex-row w-full justify-between items-center">
+                            <span className="font-bold">
+                                Calculated Upload Price
+                            </span>
                             <div className="flex gap-2 items-center">
-                                <span className='font-bold'>0.01</span>
+                                <span className="font-bold">0.01</span>
                                 <img
                                     src={filecoinImage}
                                     className="h-6"
                                     alt="Filecoin"
                                 />
                             </div>
+                        </div>
+                        <div className="flex w-full sm:w-fit gap-4 items-center">
                             <Button
                                 loading={isSubmitting}
                                 disabled={isSubmitting}
-                                className="!w-40 !rounded-lg"
+                                className="!w-full md:!w-40 !rounded-lg"
                                 type="submit"
                             >
                                 Sign & Upload
