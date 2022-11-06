@@ -4,6 +4,7 @@ import {
     Card as ThorinCard,
     Input,
     Skeleton,
+    Textarea,
 } from '@ensdomains/thorin';
 import { cx } from '@utils/cx';
 import { FetchEnsAddressResult } from '@wagmi/core';
@@ -143,6 +144,18 @@ export const InfoCard: FC<{
     );
 };
 
+type FormData = {
+    legalName: string;
+    twitter: string;
+    telegram: string;
+    website: string;
+    discord: string;
+    trademark: string;
+    other: string;
+};
+
+import { SubmitHandler, useForm } from 'react-hook-form';
+
 export const ApplyCard: FC<{
     name: string;
     address: FetchEnsAddressResult;
@@ -150,6 +163,14 @@ export const ApplyCard: FC<{
 
     onBack: () => void;
 }> = ({ name, address, onBack, verifiedData }) => {
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm<FormData>();
+    const onSubmit: SubmitHandler<FormData> = (data) => console.log(data);
+
     return (
         <Card
             name={name}
@@ -157,33 +178,55 @@ export const ApplyCard: FC<{
             verifiedData={verifiedData}
             backPressed={onBack}
         >
-            <div className="flex flex-col gap-4 mt-4">
+            <form
+                className="flex flex-col gap-4 mt-4"
+                onSubmit={handleSubmit(onSubmit)}
+            >
                 {/* Legal Name, Twitter, Telegram, Website, Discord, Trademark, Other */}
-                <Input label="Legal Name" placeholder="Enter your legal name" />
+                <Input
+                    label="Legal Name"
+                    placeholder="Enter your legal name"
+                    {...register('legalName')}
+                />
                 <Input
                     label="Twitter"
                     placeholder="Enter your Twitter handle"
+                    {...register('twitter')}
                 />
                 <Input
                     label="Telegram"
                     placeholder="Enter your Telegram handle"
+                    {...register('telegram')}
                 />
-                <Input label="Website" placeholder="Enter your website" />
+                <Input
+                    label="Website"
+                    placeholder="Enter your website"
+                    {...register('website')}
+                />
                 <Input
                     label="Discord"
                     placeholder="Enter your Discord handle"
+                    {...register('discord')}
                 />
-                <Input label="Trademark" placeholder="Enter your trademark" />
-                <Input label="Other" placeholder="Enter other information" />
+                <Input
+                    label="Trademark"
+                    placeholder="Enter your trademark"
+                    {...register('trademark')}
+                />
+                <Textarea
+                    label="Other"
+                    placeholder="Enter other information"
+                    className="h-52"
+                    {...register('other')}
+                />
 
                 <Button
                     className="!rounded-lg sm:!w-1/2 sm:mt-0 ml-auto"
-                    onClick={onBack}
                     type="submit"
                 >
-                    Sign and submit
+                    Submit
                 </Button>
-            </div>
+            </form>
         </Card>
     );
 };
