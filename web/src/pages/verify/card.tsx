@@ -1,17 +1,13 @@
 import checkMark from '@assets/check.svg';
-import {
-    Button,
-    Card as ThorinCard,
-    Input,
-    Skeleton,
-    Textarea,
-} from '@ensdomains/thorin';
+import { Button, Card as ThorinCard, Skeleton } from '@ensdomains/thorin';
 import { cx } from '@utils/cx';
 import { FetchEnsAddressResult } from '@wagmi/core';
 import { DOMAttributes, FC, ReactNode, useState } from 'react';
 import { ChevronLeft } from 'react-feather';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useEnsAvatar } from 'wagmi';
+
+import { ApplyForm } from './applyForm';
 
 export const Card: FC<{
     name: string;
@@ -145,16 +141,6 @@ export const InfoCard: FC<{
     );
 };
 
-type FormData = {
-    legalName: string;
-    twitter: string;
-    telegram: string;
-    website: string;
-    discord: string;
-    trademark: string;
-    other: string;
-};
-
 export const ApplyCard: FC<{
     name: string;
     address: FetchEnsAddressResult;
@@ -197,54 +183,10 @@ export const ApplyCard: FC<{
                     <span className="font-bold">one is required</span>.
                 </p>
             </div>
-            <form
-                className="flex flex-col gap-4 mt-4"
+            <ApplyForm
+                register={register as any}
                 onSubmit={handleSubmit(onSubmit)}
             >
-                {/* Legal Name, Twitter, Telegram, Website, Discord, Trademark, Other */}
-                <Input
-                    label="Legal Name"
-                    placeholder="Enter your legal name"
-                    {...register('legalName')}
-                />
-                <div className="flex flex-col md:flex-row gap-1 md:gap-2 items-end">
-                    <Input
-                        label="Twitter"
-                        placeholder="Enter your Twitter handle"
-                        {...register('twitter')}
-                    />
-                    <Button className="md:m-1 h-14 md:!w-32">Link</Button>
-                </div>
-                <Input
-                    label="Telegram"
-                    placeholder="Enter your Telegram handle"
-                    {...register('telegram')}
-                />
-                <Input
-                    label="Website"
-                    placeholder="Enter your website"
-                    {...register('website')}
-                />
-                <div className="flex flex-col md:flex-row gap-1 md:gap-2 items-end">
-                    <Input
-                        label="Discord"
-                        placeholder="Enter your Discord handle"
-                        {...register('discord')}
-                    />
-                    <Button className="md:m-1 h-14 md:!w-32">Link</Button>
-                </div>
-                <Input
-                    label="Trademark"
-                    placeholder="Enter your trademark"
-                    {...register('trademark')}
-                />
-                <Textarea
-                    label="Other"
-                    placeholder="Enter other information"
-                    className="h-52"
-                    {...register('other')}
-                />
-
                 {noFields && (
                     <p className="text-red text-left">
                         At least one field needs to be filled out.
@@ -260,7 +202,7 @@ export const ApplyCard: FC<{
                         Continue
                     </Button>
                 </div>
-            </form>
+            </ApplyForm>
         </Card>
     );
 };
@@ -269,15 +211,14 @@ export const VerifyInformationCard: FC<{
     name: string;
     address: FetchEnsAddressResult;
     verifiedData: VerifiedData;
-
+    defaultData: FormData;
     onBack: () => void;
-}> = ({ name, address, onBack, verifiedData }) => {
+}> = ({ name, address, onBack, verifiedData, defaultData }) => {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
-    } = useForm<FormData>();
+    } = useForm<FormData>({ defaultValues: defaultData });
     // eslint-disable-next-line unicorn/consistent-function-scoping
     const onSubmit: SubmitHandler<FormData> = (data) => console.log(data);
 
@@ -294,61 +235,17 @@ export const VerifyInformationCard: FC<{
                     press the Submit button.
                 </p>
             </div>
-            <form
-                className="flex flex-col gap-4 mt-4"
+            <ApplyForm
+                register={register as any}
                 onSubmit={handleSubmit(onSubmit)}
             >
-                {/* Legal Name, Twitter, Telegram, Website, Discord, Trademark, Other */}
-                <Input
-                    label="Legal Name"
-                    placeholder="Enter your legal name"
-                    {...register('legalName')}
-                />
-                <div className="flex flex-col md:flex-row gap-1 md:gap-2 items-end">
-                    <Input
-                        label="Twitter"
-                        placeholder="Enter your Twitter handle"
-                        {...register('twitter')}
-                    />
-                    <Button className="md:m-1 h-14 md:!w-32">Link</Button>
-                </div>
-                <Input
-                    label="Telegram"
-                    placeholder="Enter your Telegram handle"
-                    {...register('telegram')}
-                />
-                <Input
-                    label="Website"
-                    placeholder="Enter your website"
-                    {...register('website')}
-                />
-                <div className="flex flex-col md:flex-row gap-1 md:gap-2 items-end">
-                    <Input
-                        label="Discord"
-                        placeholder="Enter your Discord handle"
-                        {...register('discord')}
-                    />
-                    <Button className="md:m-1 h-14 md:!w-32">Link</Button>
-                </div>
-                <Input
-                    label="Trademark"
-                    placeholder="Enter your trademark"
-                    {...register('trademark')}
-                />
-                <Textarea
-                    label="Other"
-                    placeholder="Enter other information"
-                    className="h-52"
-                    {...register('other')}
-                />
-
                 <Button
                     className="!rounded-lg sm:!w-1/2 sm:mt-0 ml-auto"
                     type="submit"
                 >
                     Submit
                 </Button>
-            </form>
+            </ApplyForm>
         </Card>
     );
 };
