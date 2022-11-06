@@ -11,6 +11,7 @@ import { DOMAttributes, FC, ReactNode, useState } from 'react';
 import { ChevronLeft } from 'react-feather';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useEnsAvatar, useSignMessage } from 'wagmi';
+import { WorldIDWidget } from "@worldcoin/id";
 
 import {
     FormDataFields,
