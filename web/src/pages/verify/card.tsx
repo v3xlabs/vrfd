@@ -179,6 +179,12 @@ export const ApplyCard: FC<{
             verifiedData={verifiedData}
             backPressed={onBack}
         >
+            <div className="mt-3 mb-7 flex flex-col gap-2 text-left">
+                <p className="text-base">
+                    Fill out as many fields as you would like, but at least{' '}
+                    <span className="font-bold">one is required</span>.
+                </p>
+            </div>
             <form
                 className="flex flex-col gap-4 mt-4"
                 onSubmit={handleSubmit(onSubmit)}
