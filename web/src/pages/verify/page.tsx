@@ -10,7 +10,7 @@ import { useEnsAddress } from 'wagmi';
 import { FormDataFieldsData } from '../../components/FormDataFields';
 import {
     ApplyCard,
-    Card,
+    DisputeCard,
     InfoCard,
     SuccessCard,
     VerifiedData,
@@ -172,16 +172,14 @@ const Profile: FC<{ name: string; address: FetchEnsAddressResult }> = ({
             )}
 
             {cardToShow == 'dispute' && (
-                <Card
+                <DisputeCard
                     name={name}
                     address={address}
-                    backPressed={() => {
+                    onBack={() => {
                         setCardToShow('info');
                     }}
                     verifiedData={verifiedData}
-                >
-                    Work in progress
-                </Card>
+                />
             )}
         </>
     );

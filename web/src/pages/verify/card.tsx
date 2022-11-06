@@ -1,5 +1,10 @@
 import checkMark from '@assets/check.svg';
-import { Button, Card as ThorinCard, Skeleton } from '@ensdomains/thorin';
+import {
+    Button,
+    Card as ThorinCard,
+    Skeleton,
+    Textarea,
+} from '@ensdomains/thorin';
 import { cx } from '@utils/cx';
 import { FetchEnsAddressResult } from '@wagmi/core';
 import { DOMAttributes, FC, ReactNode, useState } from 'react';
@@ -329,6 +334,41 @@ export const SuccessCard: FC<{
                     Go to Info
                 </Button>
             </div>
+        </Card>
+    );
+};
+
+export const DisputeCard: FC<{
+    name: string;
+    address: FetchEnsAddressResult;
+    verifiedData: VerifiedData;
+
+    onBack: () => void;
+}> = ({ name, address, verifiedData, onBack }) => {
+    const { register, handleSubmit } = useForm<{ reason: string }>();
+
+    return (
+        <Card
+            name={name}
+            backPressed={onBack}
+            address={address}
+            verifiedData={verifiedData}
+        >
+            <form
+                onSubmit={handleSubmit(() => {
+                    onBack();
+                })}
+            >
+                <div className="mt-6 flex flex-col gap-4">
+                    <Textarea
+                        label="Describe the reson for this dispute"
+                        placeholder="Reson for the dispute"
+                        {...register('reason')}
+                    />
+
+                    <Button type="submit">Submit</Button>
+                </div>
+            </form>
         </Card>
     );
 };
