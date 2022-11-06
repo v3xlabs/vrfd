@@ -1,4 +1,5 @@
 import { Button, Input, Textarea } from '@ensdomains/thorin';
+import { WorldIDWidget } from '@worldcoin/id';
 import { DOMAttributes, FC, ReactNode } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 
@@ -19,10 +20,21 @@ export const FormDataFields: FC<{
     readonly?: boolean;
     hideThese?: Record<keyof FormDataFieldsData, boolean>;
 }> = ({ onSubmit, register, children, readonly, hideThese }) => {
+    const ensName = 'luc.computer';
+
     return (
         <form className="flex flex-col gap-4 mt-4" onSubmit={onSubmit}>
             {/* Legal Name, Twitter, Telegram, Website, Discord, Trademark, Other */}
             {JSON.stringify(hideThese)}
+            {!readonly && (
+                <WorldIDWidget
+                    actionId={'wid-vrfd-eth-' + ensName.replace('.', '-')}
+                    signal="my_signal"
+                    onSuccess={(proof) => console.log(proof)}
+                    onError={(error) => console.error(error)}
+                    debug={true}
+                />
+            )}
             {hideThese?.legalName == undefined ||
                 (!hideThese?.legalName && (
                     <Input
@@ -83,7 +95,6 @@ export const FormDataFields: FC<{
                         )}
                     </div>
                 ))}
-
             {hideThese?.trademark == undefined ||
                 (!hideThese?.trademark && (
                     <Input
@@ -93,7 +104,6 @@ export const FormDataFields: FC<{
                         {...register('trademark')}
                     />
                 ))}
-
             {hideThese?.other == undefined ||
                 (!hideThese?.other && (
                     <Textarea
