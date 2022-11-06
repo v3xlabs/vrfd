@@ -71,7 +71,7 @@ export const Card: FC<{
                     >
                         <ChevronLeft height="30px" width="30px" />
                     </button>
-                    Go back
+                    Try
                 </div>
             )}
 
