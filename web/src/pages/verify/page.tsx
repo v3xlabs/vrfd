@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-duplicate-string */
 import Container from '@components/Container';
 import { Layout } from '@components/Layout';
 import { CTASection } from '@components/sections/cta/cta';
@@ -17,21 +18,10 @@ import {
 const addEnsIfNot = (input: string | null) =>
     input ? (input.includes('.') ? input : `${input}.eth`) : undefined;
 
-const Profile: FC<{ name: string; address: FetchEnsAddressResult }> = ({
-    name,
-    address,
-}) => {
-    const [cardToShow, setCardToShow] = useState<
-        'apply' | 'verifyInfo' | 'info' | 'dispute'
-    >('info');
-
-    const { data, isLoading, isError } = useEnsAddress({
-        name: name + '.vrfd.eth',
-    });
-
-    const verifiedData: VerifiedData = {
-        verified: data === address,
-        vrfdAddress: data,
+const psuedoFields: Record<string, VerifiedData> = {
+    'helgesson.eth': {
+        verified: true,
+        vrfdAddress: '0xd577D1322cB22eB6EAC1a008F62b18807921EFBc',
         fields: [
             {
                 name: 'Legal Name',
@@ -54,6 +44,69 @@ const Profile: FC<{ name: string; address: FetchEnsAddressResult }> = ({
                 value: 'Svemat#5531',
             },
         ],
+    },
+    'v3x.eth': {
+        verified: true,
+        vrfdAddress: '0x225f137127d9067788314bc7fcc1f36746a3c3B5',
+        fields: [
+            {
+                name: 'Legal Name',
+                value: 'Luc van Kampen',
+            },
+            {
+                name: 'Twitter',
+                value: '@LucemansNL',
+            },
+            {
+                name: 'Website',
+                value: 'luc.computer',
+            },
+            {
+                name: 'Discord',
+                value: 'Lucemans#2066',
+            },
+        ],
+    },
+    'luc.computer': {
+        verified: true,
+        vrfdAddress: '0x225f137127d9067788314bc7fcc1f36746a3c3B5',
+        fields: [
+            {
+                name: 'Legal Name',
+                value: 'Luc van Kampen',
+            },
+            {
+                name: 'Twitter',
+                value: '@LucemansNL',
+            },
+            {
+                name: 'Website',
+                value: 'luc.computer',
+            },
+            {
+                name: 'Discord',
+                value: 'Lucemans#2066',
+            },
+        ],
+    },
+};
+
+const Profile: FC<{ name: string; address: FetchEnsAddressResult }> = ({
+    name,
+    address,
+}) => {
+    const [cardToShow, setCardToShow] = useState<
+        'apply' | 'verifyInfo' | 'info' | 'dispute'
+    >('info');
+
+    const { data, isLoading, isError } = useEnsAddress({
+        name: name + '.vrfd.eth',
+    });
+
+    const psuedoData = psuedoFields[name];
+
+    const verifiedData: VerifiedData = psuedoData || {
+        verified: false,
     };
 
     return (
