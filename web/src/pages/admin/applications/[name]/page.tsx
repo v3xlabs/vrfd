@@ -185,7 +185,13 @@ export const AdminNameDetailsPage: FC = () => {
                                         : ''}
                                     ?
                                     <div className="flex gap-5">
-                                        <Button>Confirm</Button>
+                                        <Button
+                                            onClick={() => {
+                                                nav('/admin/applications');
+                                            }}
+                                        >
+                                            Confirm
+                                        </Button>
                                         <Button
                                             className="!bg-red"
                                             onClick={() => {
