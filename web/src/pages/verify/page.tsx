@@ -7,6 +7,7 @@ import { FC, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useEnsAddress } from 'wagmi';
 
+import { FormDataFieldsData } from '../../components/FormDataFields';
 import {
     ApplyCard,
     Card,
@@ -109,6 +110,8 @@ const Profile: FC<{ name: string; address: FetchEnsAddressResult }> = ({
         verified: false,
     };
 
+    const [formData, setFormData] = useState<FormDataFieldsData>();
+
     return (
         <>
             {/* <div className="flex justify-center items-center flex-col gap-5">
@@ -132,20 +135,23 @@ const Profile: FC<{ name: string; address: FetchEnsAddressResult }> = ({
                 <ApplyCard
                     name={name}
                     address={address}
+                    defaultData={formData}
                     onSubmit={(data) => {
-                        alert(data);
+                        setFormData(data);
+                        setCardToShow('verifyInfo');
                     }}
                     onBack={() => setCardToShow('info')}
                     verifiedData={verifiedData}
                 />
             )}
 
-            {cardToShow == 'verifyInfo' && (
+            {cardToShow == 'verifyInfo' && formData !== undefined && (
                 <VerifyInformationCard
                     name={name}
                     address={address}
-                    onBack={() => setCardToShow('info')}
+                    onBack={() => setCardToShow('apply')}
                     verifiedData={verifiedData}
+                    defaultData={formData}
                 />
             )}
 

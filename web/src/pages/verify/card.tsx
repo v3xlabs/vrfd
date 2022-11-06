@@ -5,9 +5,12 @@ import { FetchEnsAddressResult } from '@wagmi/core';
 import { DOMAttributes, FC, ReactNode, useState } from 'react';
 import { ChevronLeft } from 'react-feather';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useEnsAvatar } from 'wagmi';
+import { useEnsAvatar, useSignMessage } from 'wagmi';
 
-import { ApplyForm } from './applyForm';
+import {
+    FormDataFields,
+    FormDataFieldsData,
+} from '../../components/FormDataFields';
 
 export const Card: FC<{
     name: string;
@@ -145,18 +148,20 @@ export const ApplyCard: FC<{
     name: string;
     address: FetchEnsAddressResult;
     verifiedData: VerifiedData;
-    onSubmit: SubmitHandler<FormData>;
+    onSubmit: SubmitHandler<FormDataFieldsData>;
     onBack: () => void;
-}> = ({ name, address, onBack, verifiedData, onSubmit }) => {
-    const [noFields, setNofield] = useState(true);
+    defaultData?: FormDataFieldsData;
+}> = ({ name, address, onBack, verifiedData, onSubmit, defaultData }) => {
+    const [noFields, setNofield] = useState(defaultData == undefined);
 
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<FormData>({
+    } = useForm<FormDataFieldsData>({
         reValidateMode: 'onSubmit',
         mode: 'all',
+        defaultValues: defaultData,
         resolver: async (values) => {
             setNofield(
                 !Object.values(values).some((v) => v !== '' && v !== ' ')
@@ -168,7 +173,6 @@ export const ApplyCard: FC<{
             };
         },
     });
-    // eslint-disable-next-line unicorn/consistent-function-scoping
 
     return (
         <Card
@@ -183,7 +187,7 @@ export const ApplyCard: FC<{
                     <span className="font-bold">one is required</span>.
                 </p>
             </div>
-            <ApplyForm
+            <FormDataFields
                 register={register as any}
                 onSubmit={handleSubmit(onSubmit)}
             >
@@ -202,7 +206,7 @@ export const ApplyCard: FC<{
                         Continue
                     </Button>
                 </div>
-            </ApplyForm>
+            </FormDataFields>
         </Card>
     );
 };
@@ -211,16 +215,31 @@ export const VerifyInformationCard: FC<{
     name: string;
     address: FetchEnsAddressResult;
     verifiedData: VerifiedData;
-    defaultData: FormData;
+    defaultData: FormDataFieldsData;
     onBack: () => void;
 }> = ({ name, address, onBack, verifiedData, defaultData }) => {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<FormData>({ defaultValues: defaultData });
+    } = useForm<FormDataFieldsData>({ defaultValues: defaultData });
+
+    const { data: signedData, signMessageAsync } = useSignMessage();
+
     // eslint-disable-next-line unicorn/consistent-function-scoping
-    const onSubmit: SubmitHandler<FormData> = (data) => console.log(data);
+    const onSubmit: SubmitHandler<FormDataFieldsData> = async (data) => {
+        const ndata: Partial<FormDataFieldsData> = {};
+
+        for (const key of Object.keys(data) as (keyof FormDataFieldsData)[]) {
+            if (data[key] && data[key].trim() != '') {
+                ndata[key] = data[key];
+            }
+        }
+
+        const signed_key_request = await signMessageAsync({
+            message: JSON.stringify(ndata),
+        });
+    };
 
     return (
         <Card
@@ -235,17 +254,48 @@ export const VerifyInformationCard: FC<{
                     press the Submit button.
                 </p>
             </div>
-            <ApplyForm
+            <FormDataFields
+                readonly
                 register={register as any}
                 onSubmit={handleSubmit(onSubmit)}
+                hideThese={
+                    Object.fromEntries(
+                        Object.entries(defaultData).map((value) => [
+                            value[0],
+                            value[1].trim() == '',
+                        ])
+                    ) as any
+                }
             >
-                <Button
-                    className="!rounded-lg sm:!w-1/2 sm:mt-0 ml-auto"
-                    type="submit"
-                >
-                    Submit
-                </Button>
-            </ApplyForm>
+                <div className="text-left">
+                    <p className="text-xs">
+                        Upon clicking submit, you will stake 0.04ETH.
+                    </p>
+                    <p className="text-xs">
+                        If the application gets approved you will{' '}
+                        <span className="font-bold">get the ETH back</span> (-
+                        gas fees), but if the information is incorrect you will{' '}
+                        <span className="font-bold">
+                            not recieve the ETH back
+                        </span>
+                        .
+                    </p>
+                </div>
+                <div className="flex w-full gap-5">
+                    <Button
+                        className="!bg-red !rounded-lg !w-1/2 sm:mt-0"
+                        onClick={onBack}
+                    >
+                        Back
+                    </Button>
+                    <Button
+                        className="!rounded-lg !w-1/2 sm:mt-0"
+                        type="submit"
+                    >
+                        Submit
+                    </Button>
+                </div>
+            </FormDataFields>
         </Card>
     );
 };
