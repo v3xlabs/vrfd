@@ -1,4 +1,7 @@
+import '@rainbow-me/rainbowkit/styles.css';
+
 import { lightTheme, ThorinGlobalStyles } from '@ensdomains/thorin';
+import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { FC } from 'react';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
@@ -89,9 +92,15 @@ const { chains, provider, webSocketProvider } = configureChains(
     [publicProvider()]
 );
 
+const { connectors } = getDefaultWallets({
+    appName: 'vrfd.eth',
+    chains,
+});
+
 const client = createClient({
     autoConnect: true,
     provider,
+    connectors,
     webSocketProvider,
 });
 
@@ -99,10 +108,20 @@ function App() {
     return (
         <div>
             <WagmiConfig client={client}>
-                <ThemeProvider theme={lightTheme}>
-                    <ThorinGlobalStyles />
-                    <RouterProvider router={router} />
-                </ThemeProvider>
+                <RainbowKitProvider
+                    chains={chains}
+                    // theme={darkTheme()}
+                    appInfo={{
+                        appName: 'vrfd.eth',
+                        // disclaimer: ,
+                        learnMoreUrl: 'https://vrfd.app',
+                    }}
+                >
+                    <ThemeProvider theme={lightTheme}>
+                        <ThorinGlobalStyles />
+                        <RouterProvider router={router} />
+                    </ThemeProvider>
+                </RainbowKitProvider>
             </WagmiConfig>
         </div>
     );

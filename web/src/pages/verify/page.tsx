@@ -5,11 +5,12 @@ import { CTASection } from '@components/sections/cta/cta';
 import { FetchEnsAddressResult } from '@wagmi/core';
 import { FC, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useEnsAddress } from 'wagmi';
+import { useAccount, useEnsAddress } from 'wagmi';
 
 import { FormDataFieldsData } from '../../components/FormDataFields';
 import {
     ApplyCard,
+    ConnectWalletCard,
     DisputeCard,
     InfoCard,
     SuccessCard,
@@ -119,19 +120,23 @@ const Profile: FC<{ name: string; address: FetchEnsAddressResult }> = ({
 
     const [formData, setFormData] = useState<FormDataFieldsData>();
 
+    const { isConnected } = useAccount();
+
     return (
         <>
             {cardToShow == 'info' && (
                 <InfoCard
                     name={name}
                     address={address}
-                    onApply={() => setCardToShow('apply')}
+                    onApply={() => {
+                        setCardToShow('apply');
+                    }}
                     onDispute={() => setCardToShow('dispute')}
                     verifiedData={verifiedData}
                 />
             )}
 
-            {cardToShow == 'apply' && (
+            {cardToShow == 'apply' && isConnected && (
                 <ApplyCard
                     name={name}
                     address={address}
@@ -141,6 +146,19 @@ const Profile: FC<{ name: string; address: FetchEnsAddressResult }> = ({
                         setCardToShow('verifyInfo');
                     }}
                     onBack={() => setCardToShow('info')}
+                    verifiedData={verifiedData}
+                />
+            )}
+
+            {cardToShow == 'apply' && !isConnected && (
+                <ConnectWalletCard
+                    name={name}
+                    address={address}
+                    onBack={() => {
+                        // eslint-disable-next-line unicorn/no-useless-undefined
+                        setFormData(undefined);
+                        setCardToShow('info');
+                    }}
                     verifiedData={verifiedData}
                 />
             )}
@@ -187,8 +205,6 @@ const Profile: FC<{ name: string; address: FetchEnsAddressResult }> = ({
 
 export const VerifyPage: FC = () => {
     const [searchParameters, _setSearchParaters] = useSearchParams();
-
-    console.log({ searchParameters: searchParameters.get('name') });
 
     const name = addEnsIfNot(searchParameters.get('name'));
 

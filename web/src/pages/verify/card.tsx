@@ -6,6 +6,7 @@ import {
     Skeleton,
     Textarea,
 } from '@ensdomains/thorin';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { cx } from '@utils/cx';
 import { FetchEnsAddressResult } from '@wagmi/core';
 import { DOMAttributes, FC, ReactNode, useState } from 'react';
@@ -248,21 +249,8 @@ export const VerifyInformationCard: FC<{
     };
 
     const onSubmit: SubmitHandler<FormDataFieldsData> = async (data) => {
-        const datas: Partial<FormDataFieldsData> = {};
-
-        for (const key of Object.keys(
-            defaultData
-        ) as (keyof FormDataFieldsData)[]) {
-            if (defaultData[key] && defaultData[key].trim() != '') {
-                datas[key] = defaultData[key];
-            }
-        }
         const signed_data_request = await signMessageAsync({
-            message: JSON.stringify({
-                type: 'vrfd-verification',
-                name,
-                data: datas,
-            }),
+            message: JSON.stringify(message),
         });
 
         if (signed_data_request) {
@@ -321,6 +309,42 @@ export const VerifyInformationCard: FC<{
                     </div>
                 </div>
             </form>
+        </Card>
+    );
+};
+
+export const ConnectWalletCard: FC<{
+    name: string;
+    address: FetchEnsAddressResult;
+    verifiedData: VerifiedData;
+
+    onBack: () => void;
+}> = ({ name, address, verifiedData, onBack }) => {
+    return (
+        <Card
+            name={name}
+            address={address}
+            verifiedData={verifiedData}
+            backPressed={onBack}
+        >
+            <div className="text-left mt-5">
+                <p className="text-base">
+                    You will need to connect your wallet to continue.
+                </p>
+
+                <ConnectButton.Custom>
+                    {({ openConnectModal }) => {
+                        return (
+                            <Button
+                                onClick={openConnectModal}
+                                className="!w-52 mt-4"
+                            >
+                                Connect wallet
+                            </Button>
+                        );
+                    }}
+                </ConnectButton.Custom>
+            </div>
         </Card>
     );
 };
